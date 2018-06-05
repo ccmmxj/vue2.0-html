@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1/layui/css/layui.css">
+    <title>vue-edu</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script src="http://127.0.0.1/layui/layui.all.js"></script>
+  <script src="http://127.0.0.1/jquery.min.js"></script>
+  <script>
+    //JavaScript代码区域
+    $(function(){
+      index.init();
+    })
+    var index = {
+      host:"",
+      init:()=>{
+        layui.element.init();
+        layui.use('element', function(){
+          var element = layui.element;
+          element.init()
+        });
+      },
+      form:()=>{
+        layui.use('form', function(){
+          var form = layui.form;
+          //
+          // //监听提交
+          // form.on('submit(formDemo)', function(data){
+          //   layer.msg(JSON.stringify(data.field));
+          //   return false;
+          // });
+        });
+      },
+      upload:()=>{
+        layui.use('upload', function() {
+          var $ = layui.jquery
+            , upload = layui.upload;
+
+          //普通图片上传
+          var uploadInst = upload.render({
+            elem: '[name=img]'
+            , url: '/upload/img'
+            , before: function (obj) {
+              //预读本地文件示例，不支持ie8
+              obj.preview(function (index, file, result) {
+                $('#img').attr('src', result); //图片链接（base64）
+              });
+            }
+            , done: function (res) {
+              console.log(res)
+              //如果上传失败
+              if (!res.success) {
+                return layer.msg('上传失败');
+              }
+              $('#imgUrl').html(index.host + res.result);
+              $('#imgUrl').click()
+              //上传成功
+            }
+            , error: function () {
+              //演示失败状态，并实现重传
+              var demoText = $('#imgText');
+              demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+              demoText.find('.demo-reload').on('click', function () {
+                uploadInst.upload();
+              });
+            }
+          });
+          upload.render({
+            elem: '[name=audio]'
+            ,url: '/upload/audio'
+            ,accept: 'audio' //音频
+            ,done: function(res){
+              console.log(res)
+              //如果上传失败
+              if (!res.success) {
+                return layer.msg('上传失败');
+              }
+              $('#audioUrl').html(index.host + res.result);
+              $('#audioUrl').click()
+              //上传成功
+            }
+          });
+        })
+      }
+    }
+  </script>
+</html>
