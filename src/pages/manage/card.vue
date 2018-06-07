@@ -66,7 +66,7 @@ export default {
     MyAlert,
     UploadButton
   },
-  name: 'code',
+  name: 'card',
   data () {
     return {
       type: 'chinese',

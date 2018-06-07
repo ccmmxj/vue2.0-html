@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import ManageLayout from '../pages/manage/layout'
-import ManageCode from '../pages/manage/code'
+import ManageCard from '../pages/manage/card'
+import ManageMyCard from '../pages/manage/myCard'
 import ManageQRcode from '../pages/manage/qrcode'
+import ManageLogin from '../pages/manage/login'
 import WebList from '../pages/web/list'
 import WebDetail from '../pages/web/detail'
-import Test from '../components/Test'
 
 Vue.use(Router)
 const router = new Router({
@@ -23,21 +24,21 @@ const router = new Router({
       path: '/edu/manage/main',
       name: 'manage_layout',
       component: ManageLayout,
-      redirect: '/edu/manage/main/code',
+      redirect: '/edu/manage/main/card',
       children: [{
-        path: 'code',
-        name: 'manage_code',
-        component: ManageCode
-      },
-      {
-        path: 'test',
-        name: 'manage_test',
-        component: Test
+        path: 'card',
+        name: 'manage_card',
+        component: ManageCard
       },
       {
         path: 'qrcode',
         name: 'manage_qrcode',
         component: ManageQRcode
+      },
+      {
+        path: 'myCard',
+        name: 'manage_myCard',
+        component: ManageMyCard
       }]
     },
     {
@@ -52,8 +53,8 @@ const router = new Router({
     },
     {
       path: '/edu/logout',
-      name: 'test',
-      component: Test
+      name: 'manage_login',
+      component: ManageLogin
     }
   ]
 })
