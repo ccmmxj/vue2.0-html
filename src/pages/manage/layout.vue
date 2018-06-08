@@ -1,5 +1,5 @@
 <template>
-  <div class="layui-layout layui-layout-admin">
+  <div class="layui-layout layui-layout-admin" @click="resetSelectShow">
     <Header></Header>
     <Left></Left>
     <div class="content">
@@ -17,12 +17,18 @@
 import Header from '../../components/manage/header'
 import Left from '../../components/manage/left'
 import Footer from '../../components/manage/footer'
+import {eventBus} from '../../eventBus'
 
 export default {
   components: {
     Header,
     Left,
     Footer
+  },
+  methods: {
+    resetSelectShow () {
+      eventBus.$emit('resetSelectShow')
+    }
   }
 }
 </script>

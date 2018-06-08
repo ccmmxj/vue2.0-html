@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import {eventBus} from "../../eventBus"
+
 export default {
   props: {
     value: {
@@ -50,9 +52,15 @@ export default {
       this.changeSelect()
       this.$emit('change-type', item)
     },
-    changeSelect () {
+    changeSelect (event) {
+      event.stopPropagation()
       this.selectShow = !this.selectShow
     }
+  },
+  mounted () {
+    eventBus.$on('resetSelectShow', () => {
+      this.selectShow = false
+    })
   }
 }
 </script>
