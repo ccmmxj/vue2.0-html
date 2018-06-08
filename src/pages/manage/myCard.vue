@@ -3,13 +3,6 @@
     <fieldset class="layui-elem-field layui-field-title">
       <legend>我的卡片</legend>
     </fieldset>
-
-    <div class="layui-form-item">
-      <label class="layui-form-label">卡片类型</label>
-      <div class="layui-input-inline">
-        <LaySelect :options="codeTypes" :value="codeTypes[0]" @change-type="chooseType"></LaySelect>
-      </div>
-    </div>
     <div>
       <table id="cardlist" lay-filter="test"></table>
     </div>
@@ -102,7 +95,7 @@ export default {
     }
   },
   mounted () {
-    // index.flow()
+    index.table()
   },
   updated () {
   }
