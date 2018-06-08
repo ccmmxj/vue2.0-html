@@ -4,6 +4,7 @@
   </div>
 </template>
 <script>
+// import '../assets/baguetteBox'
 
 export default {
 }

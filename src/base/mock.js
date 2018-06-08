@@ -12,16 +12,21 @@ Mock.mock('/api/menuList', {
         active: true,
         url: '',
         'childs':
-        [{
-          name: '上传卡片',
-          'parentId|1-10': 10,
-          url: '/edu/manage/main/code'
-        },
-        {
-          name: '生成二维码',
-          'parentId|1-10': 10,
-          url: '/edu/manage/main/qrcode'
-        }]
+          [{
+            name: '上传卡片',
+            'parentId|1-10': 10,
+            url: '/edu/manage/main/card'
+          },
+          {
+            name: '生成二维码',
+            'parentId|1-10': 10,
+            url: '/edu/manage/main/qrcode'
+          },
+          {
+            name: '我的卡片',
+            'parentId|1-10': 10,
+            url: '/edu/manage/main/myCard'
+          }]
       },
       {
         name: '@ctitle(3,5)',
@@ -29,16 +34,16 @@ Mock.mock('/api/menuList', {
         active: false,
         url: '',
         'childs':
-        [{
-          name: '@ctitle(3,5)',
-          'parentId|1-10': 10,
-          url: '@url'
-        },
-        {
-          name: '@ctitle(3,5)',
-          'parentId|1-10': 10,
-          url: '@url'
-        }]
+          [{
+            name: '@ctitle(3,5)',
+            'parentId|1-10': 10,
+            url: '@url'
+          },
+          {
+            name: '@ctitle(3,5)',
+            'parentId|1-10': 10,
+            url: '@url'
+          }]
       },
       {
         name: '@ctitle(3,5)',
@@ -46,16 +51,16 @@ Mock.mock('/api/menuList', {
         active: false,
         url: '',
         'childs':
-            [{
-              name: '@ctitle(3,5)',
-              'parentId|1-10': 10,
-              url: '@url'
-            },
-            {
-              name: '@ctitle(3,5)',
-              'parentId|1-10': 10,
-              url: '@url'
-            }]
+          [{
+            name: '@ctitle(3,5)',
+            'parentId|1-10': 10,
+            url: '@url'
+          },
+          {
+            name: '@ctitle(3,5)',
+            'parentId|1-10': 10,
+            url: '@url'
+          }]
       }]
   }
 })
@@ -77,14 +82,14 @@ Mock.mock('/upload/img', {
   success: true,
   message: '',
   title: '',
-  result: 'http://127.0.0.1/upload/img/3.jpg'
+  result: 'http://192.168.1.11/upload/img/3.jpg'
 })
 
 Mock.mock('/upload/audio', {
   success: true,
   message: '',
   title: '',
-  result: 'http://127.0.0.1/upload/audio/3.mp3'
+  result: 'http://192.168.1.11/upload/audio/3.mp3'
 })
 
 Mock.mock('/manage/addCode', {
@@ -129,20 +134,20 @@ Mock.mock('/web/getListchinese', {
   result: [{
     id: 0,
     type: 'chinese',
-    content: 'test',
-    imgUrl: 'testUrl'
+    content: '1-1',
+    imgUrl: 'http://192.168.1.11/img/3.jpg'
   },
   {
     id: 1,
     type: 'chinese',
-    content: 'test',
-    imgUrl: 'testUrl'
+    content: 'test2',
+    imgUrl: 'http://192.168.1.11/img/3.jpg'
   },
   {
     id: 2,
     type: 'chinese',
     content: 'test',
-    imgUrl: 'testUrl'
+    imgUrl: 'http://192.168.1.11/img/3.jpg'
   }]
 })
 
@@ -154,19 +159,19 @@ Mock.mock('/web/getListenglish', {
     id: 0,
     type: 'english',
     content: 'englisht',
-    imgUrl: 'testUrl'
+    imgUrl: 'http://192.168.1.11/img/3.jpg'
   },
   {
     id: 1,
     type: 'english',
     content: 'english',
-    imgUrl: 'testUrl'
+    imgUrl: 'http://192.168.1.11/img/3.jpg'
   },
   {
     id: 2,
     type: 'english',
     content: 'english',
-    imgUrl: 'testUrl'
+    imgUrl: 'http://192.168.1.11/img/3.jpg'
   }]
 })
 
@@ -178,7 +183,7 @@ Mock.mock('/web/getCode', {
     id: 1,
     type: 'english',
     content: 'englisht',
-    imgUrl: 'http://127.0.0.1/upload/img/3.jpg',
-    audioUrl: 'http://127.0.0.1/upload/audio/3.mp3'
+    imgUrl: 'http://192.168.1.11/upload/img/3.jpg',
+    audioUrl: 'http://192.168.1.11/upload/audio/3.mp3'
   }
 })

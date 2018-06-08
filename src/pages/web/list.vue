@@ -1,22 +1,18 @@
 <template>
   <div>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-      <legend>小儿</legend>
+      <legend>小儿识字</legend>
     </fieldset>
-
     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
       <ul class="layui-tab-title">
         <li v-for="(item,index) in types" :key="item.code" :class="{'layui-this':index == 0}" @click="getList(item.code)">{{item.title}}</li>
       </ul>
-      <div class="layui-tab-content" style="height: 100px;">
-        <div class="layui-tab-item layui-show">
-          <ul>
-            <!--<li v-for="item in lists" :key="item.id">{{item.content}}</li>-->
-            <router-link :to="{path: '/edu/web/detail/1'}" tag="li" active-class="active" v-for="item in lists" :key="item.id">{{item.content}}</router-link>
-          </ul>
-        </div>
-      </div>
     </div>
+    <section class = "gallery">
+      <div>
+        <router-link :to="{path: '/edu/web/detail/1'}" tag="div" v-for="item in lists" :key="item.id"><img :src="item.imgUrl" :alt="item.content"></router-link>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -43,6 +39,7 @@ export default {
       this.$http.ajax('post', '/web/getList' + code, { type: code }, (data) => {
         console.log(data)
         this.lists = data.result
+        console.log(this.lists)
       }, (error) => {
         console.log(error)
       })
