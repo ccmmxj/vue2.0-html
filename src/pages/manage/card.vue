@@ -141,7 +141,8 @@ export default {
       if (this.imgUrl == null || this.imgUrl === '') {
         message += '请上传图片,'
       }
-      if (this.type === '3') {
+      console.log(this.type)
+      if (this.type === 3) {
         if (this.audioUrl == null || this.audioUrl === '') {
           message += '请上传音频,'
         }

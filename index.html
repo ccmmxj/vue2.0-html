@@ -95,7 +95,7 @@
               if (!res.success) {
                 return layer.msg('上传失败');
               }
-              $('#audioUrl').html(index.host + res.result);
+              $('#audioUrl').html(res.result);
               $('#audioUrl').click()
               //上传成功
             }
