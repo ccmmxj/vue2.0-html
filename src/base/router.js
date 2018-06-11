@@ -14,7 +14,7 @@ const router = new Router({
   routes: [
     {
       path: '/edu/',
-      redirect: '/edu/web/list'
+      redirect: '/edu/web/list/1'
     },
     {
       path: '/edu/manage',
@@ -24,9 +24,13 @@ const router = new Router({
       path: '/edu/manage/main',
       name: 'manage_layout',
       component: ManageLayout,
-      redirect: '/edu/manage/main/card',
       children: [{
         path: 'card',
+        name: 'manage_card',
+        component: ManageCard
+      },
+      {
+        path: 'card/:id',
         name: 'manage_card',
         component: ManageCard
       },
@@ -42,12 +46,12 @@ const router = new Router({
       }]
     },
     {
-      path: '/edu/web/list',
+      path: '/edu/web/list/:companyId',
       name: 'web_list',
       component: WebList
     },
     {
-      path: '/edu/web/detail/:id',
+      path: '/edu/web/detail/:companyId/:id',
       name: 'web_detail',
       component: WebDetail
     },

@@ -4,32 +4,44 @@
       <legend>详情</legend>
     </fieldset>
     <div style="display: flex;justify-content: center;">
-      <img :src="code.imgUrl" width="50%" />
-      <audio loop="" :src="code.audioUrl" id="audio" autoplay="" preload="auto">该浏览器不支持audio属性</audio>
+      <img :src="code.imgUrl" style="width: 50% ;height: 50%" />
+      <audio loop="" :src="audioUrl" id="audio" autoplay="" preload="auto">该浏览器不支持audio属性</audio>
     </div>
   </div>
 </template>
 
 <script>
+import addr from '../../base/addr'
+
 export default {
   name: 'detail',
   data () {
     return {
-      code: {}
+      code: {},
+      audioUrl: ''
     }
   },
   methods: {
-    getCode (id) {
-      this.$http.ajax('post', '/web/getCode', { id: id }, (data) => {
+    getCode () {
+      this.$http.ajax('post', '/card/detail/' + this.companyId + '/' + this.id, {}, (data) => {
         console.log(data)
-        this.code = data.result
+        if (data.success) {
+          this.code = data.result
+          if (this.code.audioUrl) {
+            this.audioUrl = this.code.audioUrl
+          } else {
+            this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch')
+          }
+        }
       }, (error) => {
         console.log(error)
       })
     }
   },
   created () {
-    this.getCode(this.$route.params.id)
+    this.id = this.$route.params.id
+    this.companyId = this.$route.params.companyId
+    this.getCode()
   },
   mounted () {
   }

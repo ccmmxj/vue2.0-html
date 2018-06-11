@@ -1,5 +1,7 @@
 import axios from 'axios'
+import qs from 'qs'
 import {router} from '../base/router'
+import host from '../base/addr'
 
 const state = {
   user: undefined
@@ -10,14 +12,31 @@ const getters = {
   }
 }
 const actions = {
-  login ({commit}) {
-    axios.get('/api/login').then((res) => {
+  login ({commit}, data) {
+    axios({
+      method: 'POST',
+      url: host.host + 'login',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: qs.stringify(data),
+      dataType: 'json'
+    }).then((res) => {
       console.log(res)
-      commit('updateUser', res.data.result.user)
-      router.push('/edu/manage')
-    }).catch(() => {
-
+      if (res.data.success) {
+        commit('updateUser', res.data.result)
+        router.push('/edu/manage')
+      } else {
+        index.alert(res.data.message)
+      }
+    }).catch((err) => {
+      console.log(err.data)
     })
+    // axios.post('http://127.0.0.1:8080/login' ,{username:username,password:password}).then((res) => {
+    //   console.log(res)
+    //   commit('updateUser', res.data.result.user)
+    //   router.push('/edu/manage')
+    // }).catch(() => {
+    //
+    // })
   }
 }
 const mutations = {

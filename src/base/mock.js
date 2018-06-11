@@ -82,14 +82,14 @@ Mock.mock('/upload/img', {
   success: true,
   message: '',
   title: '',
-  result: 'http://192.168.1.11/upload/img/3.jpg'
+  result: 'http://100.64.29.249/upload/img/3.jpg'
 })
 
 Mock.mock('/upload/audio', {
   success: true,
   message: '',
   title: '',
-  result: 'http://192.168.1.11/upload/audio/3.mp3'
+  result: 'http://100.64.29.249/upload/audio/3.mp3'
 })
 
 Mock.mock('/manage/addCode', {
@@ -135,19 +135,19 @@ Mock.mock('/web/getListchinese', {
     id: 0,
     type: 'chinese',
     content: '1-1',
-    imgUrl: 'http://192.168.1.11/img/3.jpg'
+    imgUrl: 'http://100.64.29.249/img/3.jpg'
   },
   {
     id: 1,
     type: 'chinese',
     content: 'test2',
-    imgUrl: 'http://192.168.1.11/img/3.jpg'
+    imgUrl: 'http://100.64.29.249/img/3.jpg'
   },
   {
     id: 2,
     type: 'chinese',
     content: 'test',
-    imgUrl: 'http://192.168.1.11/img/3.jpg'
+    imgUrl: 'http://100.64.29.249/img/3.jpg'
   }]
 })
 
@@ -159,19 +159,19 @@ Mock.mock('/web/getListenglish', {
     id: 0,
     type: 'english',
     content: 'englisht',
-    imgUrl: 'http://192.168.1.11/img/3.jpg'
+    imgUrl: 'http://100.64.29.249/img/3.jpg'
   },
   {
     id: 1,
     type: 'english',
     content: 'english',
-    imgUrl: 'http://192.168.1.11/img/3.jpg'
+    imgUrl: 'http://100.64.29.249/img/3.jpg'
   },
   {
     id: 2,
     type: 'english',
     content: 'english',
-    imgUrl: 'http://192.168.1.11/img/3.jpg'
+    imgUrl: 'http://100.64.29.249/img/3.jpg'
   }]
 })
 
@@ -183,7 +183,7 @@ Mock.mock('/web/getCode', {
     id: 1,
     type: 'english',
     content: 'englisht',
-    imgUrl: 'http://192.168.1.11/upload/img/3.jpg',
-    audioUrl: 'http://192.168.1.11/upload/audio/3.mp3'
+    imgUrl: 'http://100.64.29.249/upload/img/3.jpg',
+    audioUrl: 'http://100.64.29.249/upload/audio/3.mp3'
   }
 })

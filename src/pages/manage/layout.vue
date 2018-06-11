@@ -6,7 +6,9 @@
       <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
-          <keep-alive><router-view></router-view></keep-alive>
+          <!--<keep-alive>-->
+            <router-view></router-view>
+          <!--</keep-alive>-->
         </div>
       </div>
     </div>

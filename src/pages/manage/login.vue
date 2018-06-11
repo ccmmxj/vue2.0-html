@@ -11,13 +11,13 @@
       <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
-          <input type="text" name="username" placeholder="请输入用户名" class="layui-input">
+          <input type="text" v-model.lazy="username" name="username" placeholder="请输入用户名" class="layui-input">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-          <input type="password" name="password" placeholder="请输入密码" class="layui-input">
+          <input type="password" name="password" placeholder="请输入密码" v-model.lazy="password" class="layui-input">
         </div>
       </div>
       <div class="layui-form-item">
@@ -30,11 +30,22 @@
 export default {
   name: 'login',
   data () {
-    return {}
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  watch: {
+    username () {
+      console.log(this.username)
+    },
+    password () {
+      console.log(this.password)
+    }
   },
   methods: {
     clickb () {
-      this.$store.dispatch('login')
+      this.$store.dispatch('login', {'username': this.username, 'password': this.password})
     }
   }
   // verifyUsername (value, item) {

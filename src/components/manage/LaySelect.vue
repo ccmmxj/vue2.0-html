@@ -1,7 +1,7 @@
 <template>
   <div class="layui-unselect layui-form-select" :class="{'layui-form-selected':selectShow}">
     <div class="layui-select-title">
-      <input type="text" placeholder="请选择" @click="changeSelect" readonly :value="currentValue.value" class="layui-input layui-unselect">
+      <input type="text" placeholder="请选择" @click="changeSelect" readonly v-model="currentValue.value" class="layui-input layui-unselect">
       <i class="layui-edge"></i>
     </div>
     <dl class="layui-anim layui-anim-upbit" v-show="selectShow">
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {eventBus} from "../../eventBus"
+import { eventBus } from '../../eventBus'
 
 export default {
   props: {
@@ -48,9 +48,12 @@ export default {
   },
   methods: {
     currentSelect (item) {
-      this.currentValue = item
-      this.changeSelect()
+      this.setCurrentValue(item)
       this.$emit('change-type', item)
+      this.changeSelect()
+    },
+    setCurrentValue (item) {
+      this.currentValue = item
     },
     changeSelect (event) {
       event.stopPropagation()
@@ -60,6 +63,11 @@ export default {
   mounted () {
     eventBus.$on('resetSelectShow', () => {
       this.selectShow = false
+    })
+    eventBus.$on('setCurrentSelect', (type) => {
+      this.selectShow = !this.selectShow
+      this.setCurrentValue(this.options[type])
+      this.selectShow = !this.selectShow
     })
   }
 }

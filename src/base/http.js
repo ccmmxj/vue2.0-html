@@ -1,11 +1,14 @@
 import axios from 'axios'
+import qs from 'qs'
+import addr from './addr'
 
 const http = {
   ajax (method, url, data, success, error) {
     axios({
       method: method,
-      url: url,
-      data: data
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      url: addr.host + url,
+      data: qs.stringify(data)
     }).then((res) => {
       success(res.data)
     }).catch((err) => {
@@ -17,5 +20,6 @@ const http = {
 export default {
   install (Vue, options) {
     Vue.prototype.$http = http
+    Vue.prototype.$qs = qs
   }
 }

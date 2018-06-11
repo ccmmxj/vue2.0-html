@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="http://192.168.1.11/layui/css/layui.css">
-    <link rel="stylesheet" href="http://192.168.1.11/css/baguetteBox.css">
-    <link rel="stylesheet" href="http://192.168.1.11/css/style.css">
+    <link rel="stylesheet" href="http://100.64.29.249/layui/css/layui.css">
+    <link rel="stylesheet" href="http://100.64.29.249/css/baguetteBox.css">
+    <link rel="stylesheet" href="http://100.64.29.249/css/style.css">
     <title>vue-edu</title>
   </head>
   <body>
@@ -13,16 +13,16 @@
     <!-- built files will be auto injected -->
   </body>
   <script type="text/javascript" src="https://unpkg.com/vue@2.3.4/dist/vue.js"></script>
-  <script src="http://192.168.1.11/layui/layui.all.js"></script>
-  <script src="http://192.168.1.11/jquery.min.js"></script>
-  <script src="http://192.168.1.11/baguetteBox.js"></script>
+  <script src="http://100.64.29.249/layui/layui.all.js"></script>
+  <script src="http://100.64.29.249/jquery.min.js"></script>
+  <script src="http://100.64.29.249/baguetteBox.js"></script>
   <script>
     //JavaScript代码区域
     $(function(){
       index.init();
     })
     var index = {
-      host:"",
+      host:"http://100.64.29.249:8080/",
       init:()=>{
         layui.element.init();
         layui.use('element', function(){
@@ -50,7 +50,7 @@
           // });
         });
       },
-      upload:()=>{
+      upload:(sessionid)=>{
         layui.use('upload', function() {
           var $ = layui.jquery
             , upload = layui.upload;
@@ -58,7 +58,7 @@
           //普通图片上传
           var uploadInst = upload.render({
             elem: '[name=img]'
-            , url: 'http://127.0.0.1:8080/manage/upload/img;jsessionid=B973FC554B3676E8DBECED6643CE2D33'
+            , url: index.host + 'manage/upload/img;jsessionid='+sessionid
             , before: function (obj) {
               //预读本地文件示例，不支持ie8
               obj.preview(function (index, file, result) {
@@ -71,7 +71,8 @@
               if (!res.success) {
                 return layer.msg('上传失败');
               }
-              $('#imgUrl').html(index.host + res.result);
+              $('#img').attr('src', res.result); //图片链接（base64）
+              $('#imgUrl').html(res.result);
               $('#imgUrl').click()
               //上传成功
             }
@@ -86,7 +87,7 @@
           });
           upload.render({
             elem: '[name=audio]'
-            ,url: 'http://127.0.0.1:8080/manage/upload/audio;jsessionid=B973FC554B3676E8DBECED6643CE2D33'
+            ,url: index.host + 'manage/upload/audio;jsessionid=' + sessionid
             ,accept: 'audio' //音频B973FC554B3676E8DBECED6643CE2D33
             ,done: function(res){
               console.log(res)
@@ -101,27 +102,100 @@
           });
         })
       },
-      table:()=>{
+      table:(id,filter,page,url,tools,titles,sessionid)=>{
         layui.use('table', function(){
           var table = layui.table;
           //第一个实例
-          table.render({
-            elem: '#cardlist'
+          var tableLay = table.render({
+            elem: id
             ,height: 615
             ,limit: 20
-            ,url: '/card/list/' //数据接口
+            ,sortType: 'remote' //默认: "local"或空
+            // ,loading: true
+            ,url: url //数据接口
+            ,where:{} //传参
             ,page: true //开启分页
-            ,cols: [[ //表头
-              {field: 'id', title: '序号', width:100, sort: true, fixed: 'left'}
-              ,{field: 'cardname', title: '卡片名称', width:180}
-              ,{field: 'img', title: '卡片', width:180, sort: true}
-              ,{field: 'type', title: '类型', width:180}
-              ,{field: 'url', title: '卡片链接', width: 350}
-              ,{field: 'mp3url', title: '音频链接', width: 350}
-            ]]
+            ,method: 'post'
+            ,cols: titles
+            ,request: {
+              pageName: 'pageNumber' //页码的参数名称，默认：page
+              ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            },
+            response: {
+              // statusName: 'code' //数据状态的字段名称，默认：code
+              statusCode: 200 //成功的状态码，默认：0
+              // ,msgName: 'hint' //状态信息的字段名称，默认：msg
+              ,countName: 'total' //数据总数的字段名称，默认：count
+              ,dataName: 'rows' //数据列表的字段名称，默认：data
+            }
+            // ,done: function(res, curr, count) {
+            //   debugger
+            //   //如果是异步请求数据方式，res即为你接口返回的信息。
+            //   //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+            //   laypage.render({
+            //     elem: page
+            //     , count: count
+            //     , curr: curr
+            //     , limit: count
+            //     , layout: ['prev', 'page', 'next', 'skip', 'count', 'limit']
+            //     , jump: function (obj, first) {
+            //       if (!first) {
+            //         curnum = obj.curr;
+            //         limitcount = obj.limit;
+            //         //console.log("curnum"+curnum);
+            //         //console.log("limitcount"+limitcount);
+            //         //layer.msg(curnum+"-"+limitcount);
+            //         productsearch(productGroupId, curnum, limitcount);
+            //       }
+            //     }
+            //   })
+            // }
           });
+          //排序
+          table.on('sort(' + filter +')', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+            console.log(obj.field); //当前排序的字段名
+            console.log(obj.type); //当前排序类型：desc（降序）、asc（升序）、null（空对象，默认排序）
+            console.log(this); //当前排序的 th 对象
 
+            //尽管我们的 table 自带排序功能，但并没有请求服务端。
+            //有些时候，你可能需要根据当前排序的字段，重新向服务端发送请求，从而实现服务端排序，如：
+            tableLay.reload( {
+              initSort: obj //记录初始排序，如果不设的话，将无法标记表头的排序状态。 layui 2.1.1 新增参数
+              ,where: { //请求参数（注意：这里面的参数可任意定义，并非下面固定的格式）
+                sortName: obj.field //排序字段
+                ,sortOrder: obj.type //排序方式
+              }
+            });
+          });
+          //监听工具条
+          table.on('tool(' + filter + ')',
+            function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+              ,layEvent = obj.event; //获得 lay-event 对应的值
+              var toolsR = tools(layer,obj,tableLay);
+              for( var tool in toolsR){
+                if(layEvent === tool){
+                  toolsR[tool](sessionid)
+                }
+              }
+            // if(layEvent === 'detail'){
+            //   layer.msg('查看操作');
+            // } else if(layEvent === 'del'){
+            //   layer.confirm('真的删除行么', function(index){
+            //     obj.del(); //删除对应行（tr）的DOM结构
+            //     layer.close(index);
+            //     tableLay.reload();
+            //     //向服务端发送删除指令
+            //   });
+            // } else if(layEvent === 'edit'){
+            //   layer.msg('编辑操作');
+            // }
+          }
+          );
         })
+      },
+      alert (msg) {
+        layer.msg(msg);
       }
     }
   </script>
