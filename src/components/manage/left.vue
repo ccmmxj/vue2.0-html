@@ -38,7 +38,7 @@ export default {
   },
   mounted () {
     console.log(this.$store)
-    this.$store.dispatch('fetchMenuList')
+    // this.$store.dispatch('fetchMenuList')
     index.init()
   },
   updated () {

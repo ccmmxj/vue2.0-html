@@ -10,12 +10,12 @@ const getters = {
 }
 const actions = {
   fetchMenuList ({commit}) {
-    axios.get('/api/menuList').then((res) => {
-      console.log(res)
-      commit('updateMenuList', res.data.result.menuList)
-    }).catch(() => {
-
-    })
+    // axios.get('/api/menuList').then((res) => {
+    //   console.log(res)
+    //   commit('updateMenuList', res.data.result.menuList)
+    // }).catch(() => {
+    //
+    // })
   }
 }
 const mutations = {
