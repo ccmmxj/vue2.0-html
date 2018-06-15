@@ -30,7 +30,7 @@ const actions = {
     }).catch((err) => {
       console.log(err.data)
     })
-    // axios.post('http://127.0.0.1:8080/login' ,{username:username,password:password}).then((res) => {
+    // axios.post('http://127.0.0.1:8001/login' ,{username:username,password:password}).then((res) => {
     //   console.log(res)
     //   commit('updateUser', res.data.result.user)
     //   router.push('/edu/manage')
