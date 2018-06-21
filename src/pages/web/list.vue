@@ -10,7 +10,7 @@
     </div>
     <section class = "gallery">
       <div>
-        <router-link :to="{path: '/edu/web/detail/' + companyId + '/' + item.id}" tag="div" v-for="item in lists" :key="item.id"><img :src="item.imgUrl" :alt="item.content"></router-link>
+        <router-link :to="{path: '/edu/web/detail/' + companyId + '/' + item.id}" tag="div" v-for="item in lists" :key="item.id"><img class="item" :src="item.imgUrl" :alt="item.content"></router-link>
       </div>
     </section>
   </div>
@@ -73,5 +73,9 @@ export default {
 <style scoped>
   .active{
     font-width: 1;
+  }
+  .item{
+    max-width: 50%;
+    max-height: 50%;
   }
 </style>
