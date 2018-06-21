@@ -1,10 +1,10 @@
 <template>
   <div style="width:100%;">
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-      <legend>详情</legend>
-    </fieldset>
+    <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">-->
+      <!--<legend>详情</legend>-->
+    <!--</fieldset>-->
     <div style="display: flex;justify-content: center;">
-      <img :src="code.imgUrl" style="width: 50% ;height: 50%" />
+      <img :src="code.imgUrl" style="width: 80% ;height: 80%" />
       <audio loop="" :src="audioUrl" id="audio" autoplay="" preload="auto">该浏览器不支持audio属性</audio>
     </div>
   </div>
