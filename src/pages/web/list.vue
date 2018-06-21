@@ -27,16 +27,16 @@ export default {
         title: '汉字'
       },
       {
+        code: '3',
+        title: '拼音'
+      },
+      {
         code: '1',
         title: '英语'
       },
       {
         code: '2',
         title: '数字'
-      },
-      {
-        code: '3',
-        title: '拼音'
       }],
       lists: []
     }
