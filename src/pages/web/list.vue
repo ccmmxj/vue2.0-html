@@ -78,7 +78,7 @@ export default {
     max-width: 100%;
     max-height: 100%;
   }
-  .gallery{
+  .gallery img{
     height: 100px;
   }
 </style>
