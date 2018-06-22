@@ -9,8 +9,8 @@
       </ul>
     </div>
     <section class = "gallery">
-      <div class="iconDiv">
-        <router-link :to="{path: '/edu/web/detail/' + companyId + '/' + item.id}" tag="div" v-for="item in lists" :key="item.id"><img class="item" :src="item.imgUrl" :alt="item.content"></router-link>
+      <div >
+        <router-link class="iconDiv" :to="{path: '/edu/web/detail/' + companyId + '/' + item.id}" tag="div" v-for="item in lists" :key="item.id"><img class="item" :src="item.imgUrl" :alt="item.content"></router-link>
       </div>
     </section>
   </div>
