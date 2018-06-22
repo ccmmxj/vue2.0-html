@@ -9,7 +9,7 @@
       </ul>
     </div>
     <section class = "gallery">
-      <div>
+      <div class="iconDiv">
         <router-link :to="{path: '/edu/web/detail/' + companyId + '/' + item.id}" tag="div" v-for="item in lists" :key="item.id"><img class="item" :src="item.imgUrl" :alt="item.content"></router-link>
       </div>
     </section>
@@ -78,7 +78,7 @@ export default {
     max-width: 100%;
     max-height: 100%;
   }
-  .gallery,.gallery img{
+  .iconDiv{
     height: 100px;
   }
 </style>
