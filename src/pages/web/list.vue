@@ -75,7 +75,10 @@ export default {
     font-width: 1;
   }
   .item{
-    max-width: 50%;
-    max-height: 50%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .gallery{
+    height: 100px;
   }
 </style>
