@@ -81,5 +81,6 @@ export default {
   }
   .iconDiv{
     height: 100px!important;
+    width: 30%;
   }
 </style>
