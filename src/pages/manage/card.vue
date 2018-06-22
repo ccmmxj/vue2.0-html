@@ -142,14 +142,8 @@ export default {
         message += '请上传图片,'
       }
       console.log(this.type)
-      if (this.type === 3) {
-        if (this.audioUrl == null || this.audioUrl === '') {
-          message += '请上传音频,'
-        }
-      } else {
-        if (this.content == null || this.content === '') {
-          message += '请输入内容,'
-        }
+      if ((this.audioUrl == null || this.audioUrl === '')&&(this.content == null || this.content === '')) {
+        message += '请上传音频或输入内容,'
       }
       if (message !== '') {
         index.alert(message)
