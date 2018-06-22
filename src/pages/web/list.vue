@@ -77,8 +77,9 @@ export default {
   .item{
     max-width: 100%;
     max-height: 100%;
+    height: 100px!important;
   }
   .iconDiv{
-    height: 100px;
+    height: 100px!important;
   }
 </style>
