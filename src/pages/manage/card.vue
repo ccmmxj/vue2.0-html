@@ -147,7 +147,7 @@ export default {
       }
       if (message !== '') {
         index.alert(message)
-        return
+        return false
       }
       this.$http.ajax('post', '/manage/card/saveOrUpdate;jsessionid=' + this.$store.getters.getUser.sessionId,
         {
