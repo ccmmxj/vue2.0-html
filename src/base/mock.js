@@ -82,14 +82,14 @@
 //   success: true,
 //   message: '',
 //   title: '',
-//   result: 'http://www.ccmmxj.club:8081/upload/img/3.jpg'
+//   result: 'http://edu.ccmmxj.club/upload/img/3.jpg'
 // })
 //
 // Mock.mock('/upload/audio', {
 //   success: true,
 //   message: '',
 //   title: '',
-//   result: 'http://www.ccmmxj.club:8081/upload/audio/3.mp3'
+//   result: 'http://edu.ccmmxj.club/upload/audio/3.mp3'
 // })
 //
 // Mock.mock('/manage/addCode', {
@@ -135,19 +135,19 @@
 //     id: 0,
 //     type: 'chinese',
 //     content: '1-1',
-//     imgUrl: 'http://www.ccmmxj.club:8081/img/3.jpg'
+//     imgUrl: 'http://edu.ccmmxj.club/img/3.jpg'
 //   },
 //   {
 //     id: 1,
 //     type: 'chinese',
 //     content: 'test2',
-//     imgUrl: 'http://www.ccmmxj.club:8081/img/3.jpg'
+//     imgUrl: 'http://edu.ccmmxj.club/img/3.jpg'
 //   },
 //   {
 //     id: 2,
 //     type: 'chinese',
 //     content: 'test',
-//     imgUrl: 'http://www.ccmmxj.club:8081/img/3.jpg'
+//     imgUrl: 'http://edu.ccmmxj.club/img/3.jpg'
 //   }]
 // })
 //
@@ -159,19 +159,19 @@
 //     id: 0,
 //     type: 'english',
 //     content: 'englisht',
-//     imgUrl: 'http://www.ccmmxj.club:8081/img/3.jpg'
+//     imgUrl: 'http://edu.ccmmxj.club/img/3.jpg'
 //   },
 //   {
 //     id: 1,
 //     type: 'english',
 //     content: 'english',
-//     imgUrl: 'http://www.ccmmxj.club:8081/img/3.jpg'
+//     imgUrl: 'http://edu.ccmmxj.club/img/3.jpg'
 //   },
 //   {
 //     id: 2,
 //     type: 'english',
 //     content: 'english',
-//     imgUrl: 'http://www.ccmmxj.club:8081/img/3.jpg'
+//     imgUrl: 'http://edu.ccmmxj.club/img/3.jpg'
 //   }]
 // })
 //
@@ -183,7 +183,7 @@
 //     id: 1,
 //     type: 'english',
 //     content: 'englisht',
-//     imgUrl: 'http://www.ccmmxj.club:8081/upload/img/3.jpg',
-//     audioUrl: 'http://www.ccmmxj.club:8081/upload/audio/3.mp3'
+//     imgUrl: 'http://edu.ccmmxj.club/upload/img/3.jpg',
+//     audioUrl: 'http://edu.ccmmxj.club/upload/audio/3.mp3'
 //   }
 // })
