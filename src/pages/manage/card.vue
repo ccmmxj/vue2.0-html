@@ -142,7 +142,7 @@ export default {
         message += '请上传图片,'
       }
       console.log(this.type)
-      if ((this.audioUrl == null || this.audioUrl === '')&&(this.content == null || this.content === '')) {
+      if ((this.audioUrl == null || this.audioUrl === '') && (this.content == null || this.content === '')) {
         message += '请上传音频或输入内容,'
       }
       if (message !== '') {
