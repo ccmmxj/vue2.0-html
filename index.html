@@ -194,8 +194,15 @@
           );
         })
       },
-      alert (msg) {
-        layer.msg(msg);
+      alert (msg,type) {
+        if(type || type == 1) {
+          layer.msg(msg);
+        }else if(type == 2){
+          layer.msg(msg, {
+            time: 20000, //20s后自动关闭
+            btn: ['明白了']
+          });
+        }
       }
     }
   </script>

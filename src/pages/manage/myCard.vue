@@ -19,6 +19,7 @@ import LaySelect from '../../components/manage/LaySelect'
 import MyAlert from '../../components/Alert'
 import UploadButton from '../../components/manage/UploadButton'
 import addr from '../../base/addr'
+import jrQrcode from 'jr-qrcode'
 
 export default {
   components: {
@@ -173,6 +174,20 @@ export default {
         }},
       {field: 'audioUrl', title: '音频链接', width: 180},
       {field: 'content', title: '内容'},
+      {field: 'qrcode',
+        title: '二维码',
+        height: 256,
+        templet: (item) => {
+          var qcImgUrl = jrQrcode.getQrBase64('http://edu.ccmmxj.club/edu/web/detail/1/' + item.id, {
+            padding: 2,
+            width: 256,
+            height: 256,
+            correctLevel: 2,
+            background: '#ffffff',
+            foreground: '#000000'
+          })
+          return "<img height='28px' src='" + qcImgUrl + "'/>"
+        }},
       {fixed: 'right', width: 165, align: 'center', toolbar: '#cardTool'}
     ]], this.sessionId)
   },
