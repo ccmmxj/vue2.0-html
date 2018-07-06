@@ -1,15 +1,17 @@
 <template>
   <div>
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-      <legend>小儿识字</legend>
-    </fieldset>
-    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-      <ul class="layui-tab-title">
-        <li v-for="(item,index) in types" :key="item.code" :class="{'layui-this':index == 0}" @click="getList(item.code)">{{item.title}}</li>
-      </ul>
+    <div class="hearder">
+      <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+        <legend>乐嘟嘟</legend>
+      </fieldset>
+      <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+          <li v-for="(item,index) in types" :key="item.code" :class="{'layui-this':index == 0}" @click="getList(item.code)">{{item.title}}</li>
+        </ul>
+      </div>
     </div>
-    <section class = "gallery">
-      <div >
+    <section class = "gallery code-body">
+      <div>
         <router-link class="iconDiv" :to="{path: '/edu/web/detail/' + companyId + '/' + item.id}" tag="div" v-for="item in lists" :key="item.id"><img class="item" :src="item.imgUrl" :alt="item.content"></router-link>
       </div>
     </section>
@@ -24,7 +26,7 @@ export default {
     return {
       types: [{
         code: '0',
-        title: '汉字'
+        title: '有图汉字'
       },
       {
         code: '3',
@@ -32,7 +34,7 @@ export default {
       },
       {
         code: '1',
-        title: '英语'
+        title: '字母'
       },
       {
         code: '2',
@@ -77,10 +79,17 @@ export default {
   .item{
     max-width: 100%;
     max-height: 100%;
-    height: 100px!important;
+    height: 100% !important;
   }
   .iconDiv{
-    height: 100px!important;
-    width: 30%;
+    height: 50% !important;
+    width: auto;
+  }
+  .hearder{
+    float: left; background: #fff;
+    width: 100%;
+  }
+  .code-body {
+    float: left;
   }
 </style>

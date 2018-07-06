@@ -88,11 +88,11 @@ export default {
       codeTypes:
         [{
           code: '0',
-          value: '汉字'
+          value: '有图汉字'
         },
         {
           code: '1',
-          value: '英语'
+          value: '字母'
         },
         {
           code: '2',

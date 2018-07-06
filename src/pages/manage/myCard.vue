@@ -45,7 +45,7 @@ export default {
         },
         {
           code: 'english',
-          value: '英语'
+          value: '字母'
         }]
     }
   },
@@ -164,7 +164,7 @@ export default {
         width: 180,
         sort: true,
         templet: (item) => {
-          return item.type === 0 ? '汉字' : item.type === 1 ? '英语' : item.type === 2 ? '数字' : '拼音'
+          return item.type === 0 ? '有图汉字' : item.type === 1 ? '字母' : item.type === 2 ? '数字' : '拼音'
         }},
       {field: 'imgUrl',
         title: '卡片链接',

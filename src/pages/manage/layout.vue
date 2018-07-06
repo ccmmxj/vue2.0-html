@@ -12,20 +12,17 @@
         </div>
       </div>
     </div>
-    <Footer></Footer>
   </div>
 </template>
 <script>
 import Header from '../../components/manage/header'
 import Left from '../../components/manage/left'
-import Footer from '../../components/manage/footer'
 import {eventBus} from '../../eventBus'
 
 export default {
   components: {
     Header,
-    Left,
-    Footer
+    Left
   },
   methods: {
     resetSelectShow () {
