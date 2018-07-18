@@ -173,6 +173,7 @@ export default {
           return '<img src = "' + item.imgUrl + '" width="25px" height="25px" />' + item.imgUrl
         }},
       {field: 'audioUrl', title: '音频链接', width: 180},
+      {field: 'videoUrl', title: '视频链接', width: 180},
       {field: 'content', title: '内容'},
       {field: 'qrcode',
         title: '二维码',

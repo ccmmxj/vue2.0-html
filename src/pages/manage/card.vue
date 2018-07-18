@@ -22,7 +22,7 @@
     </div>
     <div class="layui-form-item">
       <div class="layui-input-block">
-        <UploadButton :name="'audio'" :url="audioUrl" :title="'上传主题音频'" @changeUrl="changeAudioUrl"></UploadButton>
+        <UploadButton :name="'audio'" :url="audioUrl" :title="'上传音频'" @changeUrl="changeAudioUrl"></UploadButton>
         <!--<div class="layui-upload">-->
           <!--<button type="button" class="layui-btn" id="test6"><i class="layui-icon"></i>上传音频</button>-->
           <!--<div class="layui-upload-list">-->
@@ -30,6 +30,19 @@
             <!--<p id="imgText"></p>-->
             <!--<p id="imgUrl" @click="changeImgUrl" style="border: 0;margin-top: 10px;background: none;"></p>-->
           <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <UploadButton :name="'video'" :url="videoUrl" :title="'上传视频'" @changeUrl="changeVideoUrl"></UploadButton>
+        <!--<div class="layui-upload">-->
+        <!--<button type="button" class="layui-btn" name="img">上传主题图片</button>-->
+        <!--<div class="layui-upload-list">-->
+        <!--<img class="layui-upload-img" id="img" :src="imgUrl" style="width:10%" >-->
+        <!--<p id="imgText"></p>-->
+        <!--<p id="imgUrl" @click="changeImgUrl" style="border: 0;margin-top: 10px;background: none;"></p>-->
+        <!--</div>-->
         <!--</div>-->
       </div>
     </div>
@@ -80,6 +93,7 @@ export default {
       type: 0,
       imgUrl: '',
       audioUrl: '',
+      videoUrl: '',
       content: '',
       title: '',
       alertType: 'info',
@@ -130,6 +144,9 @@ export default {
     changeAudioUrl (url) {
       this.audioUrl = url
     },
+    changeVideoUrl (url) {
+      this.videoUrl = url
+    },
     submitCode () {
       let message = ''
       if (this.type == null || this.type === '') {
@@ -140,6 +157,9 @@ export default {
       }
       if (this.imgUrl == null || this.imgUrl === '') {
         message += '请上传图片,'
+      }
+      if (this.videoUrl == null || this.videoUrl === '') {
+        message += '请上传视频,'
       }
       console.log(this.type)
       if ((this.audioUrl == null || this.audioUrl === '') && (this.content == null || this.content === '')) {
@@ -156,7 +176,8 @@ export default {
           imgUrl: this.imgUrl,
           content: this.content,
           title: this.title,
-          audioUrl: this.audioUrl
+          audioUrl: this.audioUrl,
+          videoUrl: this.videoUrl
         },
         (data) => {
           if (data.success) {

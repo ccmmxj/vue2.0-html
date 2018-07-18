@@ -6,6 +6,8 @@ import ManageMyCard from '../pages/manage/myCard'
 import ManageQRcode from '../pages/manage/qrcode'
 import ManageLogin from '../pages/manage/login'
 import WebList from '../pages/web/list'
+import WebCardDetail from '../pages/web/cardDetail'
+import WebVideoDetail from '../pages/web/videoDetail'
 import WebDetail from '../pages/web/detail'
 
 Vue.use(Router)
@@ -51,9 +53,14 @@ const router = new Router({
       component: WebList
     },
     {
-      path: '/edu/web/detail/:companyId/:id',
-      name: 'web_detail',
-      component: WebDetail
+      path: '/edu/web/card/detail/:companyId/:id',
+      name: 'web_card_detail',
+      component: WebCardDetail
+    },
+    {
+      path: '/edu/web/video/detail/:companyId/:id',
+      name: 'web_video_detail',
+      component: WebVideoDetail
     },
     {
       path: '/edu/logout',
