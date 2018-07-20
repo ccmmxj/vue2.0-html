@@ -37,6 +37,30 @@ const actions = {
     // }).catch(() => {
     //
     // })
+  },
+  logout ({commit}) {
+    axios({
+      method: 'GET',
+      url: host.host + 'logout;jsessionid=' + state.user.sessionId,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: qs.stringify({}),
+      dataType: 'json'
+    }).then((res) => {
+      console.log(res)
+      if (!res.data.success) {
+        index.alert(res.data.message)
+      }
+    }).catch((err) => {
+      console.log(err.data)
+    })
+    // axios.post('http://127.0.0.1:8001/login' ,{username:username,password:password}).then((res) => {
+    //   console.log(res)
+    //   commit('updateUser', res.data.result.user)
+    //   router.push('/edu/manage')
+    // }).catch(() => {
+    //
+    // })
+    commit('logoutUser')
   }
 }
 const mutations = {

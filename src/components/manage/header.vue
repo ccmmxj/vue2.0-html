@@ -41,13 +41,13 @@ export default {
   },
   methods: {
     logout () {
-      this.$store.commit('logoutUser')
+      this.$store.dispatch('logout')
       console.log(this.$store.getters.getUser)
     }
   },
   mounted () {
     if (this.$store.getters.getUser === undefined) {
-      this.$router.push('/edu/logout')
+      this.$store.dispatch('logout')
     }
     console.log(this.$store)
   }

@@ -190,7 +190,7 @@ export default {
         },
         (error) => {
           console.log(error)
-          this.$store.commit('logoutUser')
+          this.$store.dispatch('logout')
         })
     }
   },
@@ -213,7 +213,7 @@ export default {
         }
       }, (error) => {
         console.log(error)
-        this.$store.commit('logoutUser')
+        this.$store.dispatch('logout')
       })
     }
   }

@@ -8,7 +8,6 @@ import ManageLogin from '../pages/manage/login'
 import WebList from '../pages/web/list'
 import WebCardDetail from '../pages/web/cardDetail'
 import WebVideoDetail from '../pages/web/videoDetail'
-import WebDetail from '../pages/web/detail'
 
 Vue.use(Router)
 const router = new Router({
