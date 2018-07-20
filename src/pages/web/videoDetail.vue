@@ -4,7 +4,7 @@
       <!--<legend>详情</legend>-->
     <!--</fieldset>-->
     <div class="title"><a :href="'/edu/web/card/detail/' + this.companyId + '/' + this.id">切换到图片版</a>
-      <div style="">
+      <div style="width:80%;margin:auto">
         <video :src="videoUrl" controls="controls" class="video" autoplay>该浏览器不支持video属性</video>
       </div>
     </div>
