@@ -5,6 +5,13 @@
     </fieldset>
     <div>
       <router-link tag="button" :to="{path: addCard}" class="layui-btn layui-btn-warm">添加</router-link>
+      <div class="layui-inline">
+        <label class="layui-form-label">卡片名称</label>
+        <div class="layui-input-inline">
+          <input name="title" v-model.lazy="searchTitle" class="layui-input">
+        </div>
+      </div>
+      <button class="layui-btn" @click="reloadTable">搜索</button>
       <table id="cardList" lay-filter="cardFilter"></table>
       <div id="page"></div>
       <script type="text/html" id="cardTool">
@@ -38,6 +45,7 @@ export default {
       alertType: 'info',
       showAlert: false,
       messageAlert: '',
+      searchTitle: '',
       codeTypes:
         [{
           code: 'chinese',
@@ -61,6 +69,11 @@ export default {
     }
   },
   methods: {
+    reloadTable () {
+      index.tableReload({
+        title: this.searchTitle,
+      }, '#cardList')
+    },
     chooseType (item) {
       this.type = item.code
     },
@@ -190,7 +203,7 @@ export default {
           return "<img height='28px' src='" + qcImgUrl + "'/>"
         }},
       {fixed: 'right', width: 165, align: 'center', toolbar: '#cardTool'}
-    ]], this.sessionId)
+    ]], this.sessionId,{})
   },
   updated () {
   }

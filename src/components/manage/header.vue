@@ -47,7 +47,7 @@ export default {
   },
   mounted () {
     if (this.$store.getters.getUser === undefined) {
-      this.$store.dispatch('logout')
+      this.$router.push('/edu/logout')
     }
     console.log(this.$store)
   }

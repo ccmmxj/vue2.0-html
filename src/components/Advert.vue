@@ -10,19 +10,19 @@
 </template>
 
 <script>
-    export default {
-        name: "Advert",
-      data () {
-          return {
-            showAdvert: true
-          }
-      },
-      methods: {
-          closeAdvert (name) {
-            this[name] = false
-          }
-      }
+export default {
+  name: 'Advert',
+  data () {
+    return {
+      showAdvert: true
     }
+  },
+  methods: {
+    closeAdvert (name) {
+      this[name] = false
+    }
+  }
+}
 </script>
 
 <style scoped>

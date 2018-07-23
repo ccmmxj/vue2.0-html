@@ -2,7 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ManageLayout from '../pages/manage/layout'
 import ManageCard from '../pages/manage/card'
+import ManageLunbo from '../pages/manage/lunbo'
+import ManageWindow from '../pages/manage/window'
 import ManageMyCard from '../pages/manage/myCard'
+import ManageMyLunbo from '../pages/manage/myLunboList'
+import ManageMyWindow from '../pages/manage/myWindowList'
 import ManageQRcode from '../pages/manage/qrcode'
 import ManageLogin from '../pages/manage/login'
 import WebList from '../pages/web/list'
@@ -34,6 +38,36 @@ const router = new Router({
         path: 'card/:id',
         name: 'manage_card',
         component: ManageCard
+      },
+      {
+        path: 'lunbo',
+        name: 'manage_lunbo',
+        component: ManageLunbo
+      },
+      {
+        path: 'lunbo/:id',
+        name: 'manage_lunbo',
+        component: ManageLunbo
+      },
+      {
+        path: 'window',
+        name: 'manage_window',
+        component: ManageWindow
+      },
+      {
+        path: 'window/:id',
+        name: 'manage_window',
+        component: ManageWindow
+      },
+      {
+        path: 'myLunbo',
+        name: 'manage_myLunbo',
+        component: ManageMyLunbo
+      },
+      {
+        path: 'myWindow',
+        name: 'manage_myWindow',
+        component: ManageMyWindow
       },
       {
         path: 'qrcode',
