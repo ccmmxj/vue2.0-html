@@ -192,7 +192,7 @@ export default {
         title: '二维码',
         height: 256,
         templet: (item) => {
-          var qcImgUrl = jrQrcode.getQrBase64('http://edu.ccmmxj.club/edu/web/detail/1/' + item.id, {
+          var qcImgUrl = jrQrcode.getQrBase64('http://edu.ccmmxj.club/edu/web/card/detail/1/' + item.id, {
             padding: 2,
             width: 256,
             height: 256,
