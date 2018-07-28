@@ -39,6 +39,10 @@ export default {
       {
         code: '2',
         title: '数字'
+      },
+      {
+        code: '4',
+        title: '象形字（一）'
       }],
       lists: []
     }

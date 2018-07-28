@@ -115,6 +115,10 @@ export default {
         {
           code: '3',
           value: '拼音'
+        },
+        {
+          code: '4',
+          value: '象形字（一）'
         }]
     }
   },
