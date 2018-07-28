@@ -158,9 +158,9 @@ export default {
       if (this.imgUrl == null || this.imgUrl === '') {
         message += '请上传图片,'
       }
-      if (this.videoUrl == null || this.videoUrl === '') {
-        message += '请上传视频,'
-      }
+      // if (this.videoUrl == null || this.videoUrl === '') {
+      //   message += '请上传视频,'
+      // }
       console.log(this.type)
       if ((this.audioUrl == null || this.audioUrl === '') && (this.content == null || this.content === '')) {
         message += '请上传音频或输入内容,'
