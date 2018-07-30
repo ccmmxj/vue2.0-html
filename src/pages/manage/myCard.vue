@@ -177,7 +177,7 @@ export default {
         width: 180,
         sort: true,
         templet: (item) => {
-          return item.type === 0 ? '有图汉字' : item.type === 1 ? '字母' : item.type === 2 ? '数字' : '拼音'
+          return item.type === 0 ? '有图汉字' : item.type === 1 ? '字母' : item.type === 2 ? '数字' : item.type === 4 ? '象形字（一）' : '拼音'
         }},
       {field: 'imgUrl',
         title: '卡片链接',
@@ -196,7 +196,7 @@ export default {
             padding: 2,
             width: 256,
             height: 256,
-            correctLevel: 2,
+            correctLevel: 1,
             background: '#ffffff',
             foreground: '#000000'
           })
