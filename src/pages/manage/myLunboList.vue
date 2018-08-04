@@ -26,7 +26,6 @@ import LaySelect from '../../components/manage/LaySelect'
 import MyAlert from '../../components/Alert'
 import UploadButton from '../../components/manage/UploadButton'
 import addr from '../../base/addr'
-import jrQrcode from 'jr-qrcode'
 
 export default {
   components: {
@@ -37,7 +36,7 @@ export default {
   name: 'myCard',
   data () {
     return {
-      addLunbo: '/edu/manage/main/lunbo',
+      addLunbo: '/edu/manage/main/lunbo'
     }
   },
   watch: {
@@ -45,7 +44,7 @@ export default {
   methods: {
     reloadTable () {
       index.tableReload({
-        title: this.searchTitle,
+        title: this.searchTitle
       }, '#lunboList')
     },
     initTable () {

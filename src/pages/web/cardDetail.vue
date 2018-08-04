@@ -6,7 +6,9 @@
     <div class="title"><a :href="'/edu/web/video/detail/' + this.companyId + '/' + this.id">切换到视频版</a></div>
     <div style="display: flex;justify-content: center;">
       <img :src="code.imgUrl" style="width: 100% ;height: 80%" />
-      <audio loop="" :src="audioUrl" id="audio" autoplay="" preload="auto">该浏览器不支持audio属性</audio>
+    </div>
+    <div style="display: flex;justify-content: center;">
+      <audio ref="audio" :src="audioUrl" id="audio" preload="auto" autoplay="" loop="" controls="" :style="{opacity: opacity}" >该浏览器不支持audio属性</audio>
     </div>
   </div>
 </template>
@@ -19,7 +21,26 @@ export default {
   data () {
     return {
       code: {},
-      audioUrl: ''
+      audioUrl: '',
+      opacity: 0
+    }
+  },
+  watch: {
+    audioUrl () {
+      function forceSafariPlayAudio() {
+        audioEl.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+        audioEl.play(); // iOS 7/8 仅需要 play 一下
+      }
+
+      var audioEl = this.$refs.audio;
+      // audioEl.addEventListener('play', function() {
+      //   // 当 audio 能够播放后, 移除这个事件
+      //   window.removeEventListener('touchstart', forceSafariPlayAudio, false);
+      // }, false);
+      window.addEventListener('touchstart', forceSafariPlayAudio, false);
+      // var event = document.createEvent('Events');
+      // event.initEvent('touchstart', true, true);
+      // window.dispatchEvent(event)
     }
   },
   methods: {
@@ -37,6 +58,18 @@ export default {
       }, (error) => {
         console.log(error)
       })
+    },
+    autoPlay (name) {
+      console.log("autoPlay")
+      var audioEl = $(name)
+      document.addEventListener('DOMContentLoaded', function () {
+        audioEl.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+        audioEl[0].play()
+      });
+      document.addEventListener('touchstart', function () {
+        audioEl.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+        audioEl[0].play()
+      });
     }
   },
   created () {
@@ -45,6 +78,10 @@ export default {
     this.getCode()
   },
   mounted () {
+    console.log(navigator.userAgent.toLowerCase())
+    if (/(iphone|ipad|ipod|ios)/i.test(navigator.userAgent.toLowerCase())) {
+        this.opacity = 1
+    }
   }
 }
 </script>

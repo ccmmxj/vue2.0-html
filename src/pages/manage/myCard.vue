@@ -71,7 +71,7 @@ export default {
   methods: {
     reloadTable () {
       index.tableReload({
-        title: this.searchTitle,
+        title: this.searchTitle
       }, '#cardList')
     },
     chooseType (item) {
@@ -203,7 +203,7 @@ export default {
           return "<img height='28px' src='" + qcImgUrl + "'/>"
         }},
       {fixed: 'right', width: 165, align: 'center', toolbar: '#cardTool'}
-    ]], this.sessionId,{})
+    ]], this.sessionId, {})
   },
   updated () {
   }

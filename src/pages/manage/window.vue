@@ -43,7 +43,6 @@
 import LaySelect from '../../components/manage/LaySelect'
 import MyAlert from '../../components/Alert'
 import UploadButton from '../../components/manage/UploadButton'
-import { eventBus } from '../../eventBus'
 
 export default {
   components: {
@@ -60,7 +59,7 @@ export default {
       oid: '',
       alertType: 'info',
       showAlert: false,
-      messageAlert: '',
+      messageAlert: ''
     }
   },
   watch: {

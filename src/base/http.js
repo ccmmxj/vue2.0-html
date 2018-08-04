@@ -3,17 +3,20 @@ import qs from 'qs'
 import addr from './addr'
 
 const http = {
-  ajax (method, url, data, success, error) {
+  hajax (method, url, data, success, error) {
     axios({
       method: method,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      url: addr.host + url,
+      url: url,
       data: qs.stringify(data)
     }).then((res) => {
       success(res.data)
     }).catch((err) => {
       error(err)
     })
+  },
+  ajax (method, url, data, success, error) {
+    http.hajax(method, addr.host + url, data, success, error)
   }
 }
 

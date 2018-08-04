@@ -30,8 +30,15 @@ export default {
           if (this.code.audioUrl) {
             this.audioUrl = this.code.audioUrl
           } else {
+            this.$http.hajax('post',addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch'),{},(data) =>  {
+              console.log(data)
+              this.audioUrl = data.data
+            },(error) => {
+              console.log(error)
+            })
             this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch')
           }
+          index.playAudio("audio")
         }
       }, (error) => {
         console.log(error)
