@@ -3,12 +3,13 @@
     <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">-->
       <!--<legend>详情</legend>-->
     <!--</fieldset>-->
-    <div class="title"><a :href="'/edu/web/video/detail/' + this.companyId + '/' + this.id">切换到视频版</a></div>
+    <div class="title"><a :href="'/edu/web/video/detail/' + this.companyId + '/' + this.id" >切换到视频版</a></div>
     <div style="display: flex;justify-content: center;">
       <img :src="code.imgUrl" style="width: 100% ;height: 80%" />
     </div>
     <div style="display: flex;justify-content: center;">
-      <audio ref="audio" :src="audioUrl" id="audio" preload="auto" autoplay="" loop="" controls="" :style="{opacity: opacity}" >该浏览器不支持audio属性</audio>
+      <audio ref="audio" :src="audioUrl" id="audio" preload="auto" autoplay="" loop="" >该浏览器不支持audio属性</audio>
+      <span style="color:red;font-size:14px;">{{message}}</span>
     </div>
   </div>
 </template>
@@ -22,7 +23,7 @@ export default {
     return {
       code: {},
       audioUrl: '',
-      opacity: 0
+      message: ''
     }
   },
   watch: {
@@ -80,7 +81,7 @@ export default {
   mounted () {
     console.log(navigator.userAgent.toLowerCase())
     if (/(iphone|ipad|ipod|ios)/i.test(navigator.userAgent.toLowerCase())) {
-        this.opacity = 1
+        this.message = '请点击一下屏幕进行播放'
     }
   }
 }
@@ -92,7 +93,7 @@ export default {
     width: 100%;
     position: fixed;
     text-align: right;
-    right: 10px;
+    right: 10px;    font-size: 14px;
     top: 20px;
     z-index:1000
   }
