@@ -59,6 +59,7 @@ export default {
   position: fixed;
   text-align: right;
   right: 10px;
+  font-size: 14px;
   top: 20px;
   z-index:1000
 }
