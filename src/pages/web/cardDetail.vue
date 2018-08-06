@@ -8,7 +8,7 @@
       <img :src="code.imgUrl" style="width: 100% ;height: 80%" />
     </div>
     <div style="display: flex;justify-content: center;">
-      <audio ref="audio" :src="audioUrl" id="audio" :preload="loop" :autoplay="loop" :loop="loop" >该浏览器不支持audio属性</audio>
+      <audio ref='audio' :src="audioUrl" id='audio' :preload="loop" :autoplay="loop" :loop="loop" >该浏览器不支持audio属性</audio>
       <span style="color:red;font-size:14px;" id="message">{{message}}</span>
     </div>
   </div>
@@ -32,19 +32,19 @@ export default {
     }
   },
   methods: {
-    iosInit (){
-      function forceSafariPlayAudio (){
-        console.log("forceSafariPlayAudio")
-        var audioEl = document.getElementById("audio");
-        audioEl.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
-        audioEl.play(); // iOS 7/8 仅需要 play 一下
+    iosInit () {
+      function forceSafariPlayAudio () {
+        console.log('forceSafariPlayAudio')
+        var audioEl = document.getElementById('audio')
+        audioEl.load() // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+        audioEl.play() // iOS 7/8 仅需要 play 一下
       }
-      document.getElementById("audio").addEventListener('pause',forceSafariPlayAudio  ,false)
-      document.getElementById("audio").addEventListener('ended',forceSafariPlayAudio  ,false)
-      document.getElementById("audio").addEventListener('play', function() {
-        window.removeEventListener('touchstart', forceSafariPlayAudio, false);
-        document.getElementById("message").innerHTML = ''
-      }, false);
+      document.getElementById('audio').addEventListener('pause', forceSafariPlayAudio, false)
+      document.getElementById('audio').addEventListener('ended', forceSafariPlayAudio, false)
+      document.getElementById('audio').addEventListener('play', function () {
+        window.removeEventListener('touchstart', forceSafariPlayAudio, false)
+        document.getElementById('message').innerHTML = ''
+      }, false)
       window.addEventListener('touchstart', forceSafariPlayAudio, false)
     },
     getCode () {
@@ -77,16 +77,16 @@ export default {
       this.loop = false
       this.message = '请点击一下屏幕进行播放'
       this.iosInit()
-      console.log("forceSafariPlayAudio")
-      var time = setInterval(()=>{
-        console.log("time")
-        var audioEl = document.getElementById("audio");
-        if(audioEl.paused || audioEl.ended){
-          audioEl.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
-          audioEl.play(); // iOS 7/8 仅需要 play 一下
+      console.log('forceSafariPlayAudio')
+      var time = setInterval(() => {
+        console.log('time')
+        var audioEl = document.getElementById('audio')
+        if (audioEl.paused || audioEl.ended) {
+          audioEl.load() // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+          audioEl.play() // iOS 7/8 仅需要 play 一下
         }
         clearInterval(time)
-      },1000)
+      }, 1000)
     }
   }
 }
