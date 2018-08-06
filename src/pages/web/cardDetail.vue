@@ -9,7 +9,7 @@
     </div>
     <div style="display: flex;justify-content: center;">
       <audio ref="audio" :src="audioUrl" id="audio" :preload="loop" :autoplay="loop" :loop="loop" >该浏览器不支持audio属性</audio>
-      <span style="color:red;font-size:14px;">{{message}}</span>
+      <span style="color:red;font-size:14px;" id="message">{{message}}</span>
     </div>
   </div>
 </template>
@@ -41,6 +41,10 @@ export default {
       }
       document.getElementById("audio").addEventListener('pause',forceSafariPlayAudio  ,false)
       document.getElementById("audio").addEventListener('ended',forceSafariPlayAudio  ,false)
+      document.getElementById("audio").addEventListener('play', function() {
+        window.removeEventListener('touchstart', forceSafariPlayAudio, false);
+        document.getElementById("message").innerHTML = ''
+      }, false);
       window.addEventListener('touchstart', forceSafariPlayAudio, false)
     },
     getCode () {
