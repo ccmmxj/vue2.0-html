@@ -1,17 +1,39 @@
 <template>
-    <div class="advert">
-      <transition name="fade">
-        <div v-show="showAdvert">
+  <div>
+    <transition name="fade">
+      <div v-show="showAdvert" @click="toLink">
+        <div class="item" :style="{width :type == 'right'?'120px':'100%',height: type =='right'?'120px':'50px',backgroundImage:'url(' + advertUrl + ')'}">
           <div class="close" @click="closeAdvert('showAdvert')">x</div>
-          <img src="http://edu.ccmmxj.club/img/zfb2.png" width="112px"/>
+          <!--<img src="http://edu.ccmmxj.club/img/zfb2.png" width="120px"/>-->
         </div>
-      </transition>
-    </div>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Advert',
+  props: {
+    type: {
+      type: String,
+      default () {
+        return "right"
+      }
+    },
+    advertUrl: {
+      type: String,
+      default () {
+        return 'http://edu.ccmmxj.club/img/zfb2.png'
+      }
+    },
+    toUrl: {
+      type: String,
+      default () {
+        return 'http://edu.ccmmxj.club/img/zfb2.png'
+      }
+    }
+  },
   data () {
     return {
       showAdvert: true
@@ -20,32 +42,42 @@ export default {
   methods: {
     closeAdvert (name) {
       this[name] = false
+    },
+    toLink () {
+      window.open(this.toUrl)
     }
   }
 }
 </script>
 
 <style scoped>
-  .advert{
-  }
-  .advert img{
-    position: fixed;
-    bottom: 30px;
-    right: 5px;
-    opacity: 0.8;
+  .advert .item{
+    margin-bottom: 5px;
+    background: no-repeat center center ;
+    background-size: 100%;
   }
   .advert .close{
-    z-index: 1000;
-    position: fixed;
-    bottom: 125px;
-    right: 10px;
     opacity: 0.8;
     text-align: center;
-    width:20px;
-    height:20px;
+    width: 20px;
+    height: 20px;
     background: #555;
     color: #fff;
-    border-radius:50px;
+    border-radius: 50px;
+    float: right;
+    margin-right: 2px;
+    margin-top: 2px;
+    /*z-index: 1000;*/
+    /*position: fixed;*/
+    /*bottom: 125px;*/
+    /*right: 10px;*/
+    /*opacity: 0.8;*/
+    /*text-align: center;*/
+    /*width:20px;*/
+    /*height:20px;*/
+    /*background: #555;*/
+    /*color: #fff;*/
+    /*border-radius:50px;*/
   }
   .fade-enter-active, .fade-leave-active{
     transition: all 1s ease

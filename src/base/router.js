@@ -3,9 +3,11 @@ import Router from 'vue-router'
 import ManageLayout from '../pages/manage/layout'
 import ManageCard from '../pages/manage/card'
 import ManageLunbo from '../pages/manage/lunbo'
+import ManageAdvert from '../pages/manage/advert'
 import ManageWindow from '../pages/manage/window'
 import ManageMyCard from '../pages/manage/myCard'
 import ManageMyLunbo from '../pages/manage/myLunboList'
+import ManageMyAdvert from '../pages/manage/myAdvert'
 import ManageMyWindow from '../pages/manage/myWindowList'
 import ManageQRcode from '../pages/manage/qrcode'
 import ManageLogin from '../pages/manage/login'
@@ -45,6 +47,16 @@ const router = new Router({
         component: ManageLunbo
       },
       {
+        path: 'advert',
+        name: 'manage_advert',
+        component: ManageAdvert
+      },
+      {
+        path: 'advert/:id',
+        name: 'manage_advert',
+        component: ManageAdvert
+      },
+      {
         path: 'lunbo/:id',
         name: 'manage_lunbo',
         component: ManageLunbo
@@ -78,6 +90,11 @@ const router = new Router({
         path: 'myCard',
         name: 'manage_myCard',
         component: ManageMyCard
+      },
+      {
+        path: 'myAdvert',
+        name: 'manage_myAdvert',
+        component: ManageMyAdvert
       }]
     },
     {
