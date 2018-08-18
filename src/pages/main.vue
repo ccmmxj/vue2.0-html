@@ -5,10 +5,10 @@
     </div>
     <Footer class="footer"></Footer>
     <div class="advert bottom">
-      <Advert type="bottom" :toUrl="bottom.toUrl" :advertUrl="bottom.advertUrl"></Advert>
+      <Advert v-if="bottom != null" type="bottom" :toUrl="bottom.toUrl" :advertUrl="bottom.advertUrl"></Advert>
     </div>
     <div class="advert">
-      <Advert v-for="(item , index) in rights" v-bind:key="id" type="right" :to-url="item.toUrl" :advert-url="item.advertUrl"></Advert>
+      <Advert v-if="rights != null" v-for="(item , index) in rights" v-bind:key="item.id" type="right" :to-url="item.toUrl" :advert-url="item.advertUrl"></Advert>
     </div>
   </div>
 </template>
