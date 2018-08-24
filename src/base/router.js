@@ -14,6 +14,7 @@ import ManageLogin from '../pages/manage/login'
 import WebList from '../pages/web/list'
 import WebCardDetail from '../pages/web/cardDetail'
 import WebVideoDetail from '../pages/web/videoDetail'
+import ManageAbout from '../pages/web/about'
 
 Vue.use(Router)
 const router = new Router({
@@ -116,6 +117,11 @@ const router = new Router({
       path: '/edu/logout',
       name: 'manage_login',
       component: ManageLogin
+    },
+    {
+      path: '/edu/about',
+      name: 'manage_about',
+      component: ManageAbout
     }
   ]
 })

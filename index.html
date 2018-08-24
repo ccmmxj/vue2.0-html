@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="http://edu.ccmmxj.club/css/baguetteBox.css">
     <link rel="stylesheet" href="http://edu.ccmmxj.club/css/style.css">
     <title>乐嘟嘟</title>
+    <style>
+      body .skeleton{
+        background: #eee;
+        color: #eee;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
@@ -251,6 +257,13 @@
             btn: ['明白了']
           });
         }
+      },
+      uploadFinish () {
+        var skeletons = document.getElementsByClassName('skeleton')
+        for(var i = skeletons.length-1;i>=0;i--){
+          skeletons[i].className = skeletons[i].className.replace(/skeleton/g,'')
+        }
+        return true;
       }
     }
   </script>

@@ -24,8 +24,8 @@ export default {
   },
   data () {
     return {
-      bottom:{},
-      rights:[]
+      bottom: {},
+      rights: []
     }
   },
   mounted () {
