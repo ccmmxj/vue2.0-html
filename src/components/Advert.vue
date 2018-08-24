@@ -2,7 +2,7 @@
   <div>
     <transition name="fade">
       <div v-show="showAdvert">
-        <div class="close" @click="closeAdvert('showAdvert')">x</div>
+        <div class="close" @click="closeAdvert('showAdvert')"><i class="layui-icon"></i></div>
         <div class="item" :style="{width :type == 'right'?'120px':'100%',height: type =='right'?'120px':'50px',backgroundImage:'url(' + advertUrl + ')'}" @click="toLink">
           <!--<img src="http://edu.ccmmxj.club/img/zfb2.png" width="120px"/>-->
         </div>
