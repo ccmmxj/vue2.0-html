@@ -29,6 +29,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.dispatch('fetchToken', {})
     this.$http.ajax('post', 'advert/list', {type: 0}, (data) => {
       console.log(data)
       if (data.success) {
