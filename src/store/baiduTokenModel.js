@@ -13,7 +13,7 @@ const actions = {
     axios.post(host.host + '/baidu/getToken',).then((res) => {
       console.log(res)
       commit('updateToken', JSON.parse(res.data.result).access_token)
-      host.tok = state.token
+      // host.tok = state.token
     }).catch(() => {
 
     })

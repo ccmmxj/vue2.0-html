@@ -55,7 +55,7 @@ export default {
           if (this.code.audioUrl) {
             this.audioUrl = this.code.audioUrl
           } else {
-            this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch')
+            this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch',this.$$state.getters.getToken())
           }
         }
       }, (error) => {
