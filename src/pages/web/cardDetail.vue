@@ -3,7 +3,9 @@
     <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">-->
       <!--<legend>详情</legend>-->
     <!--</fieldset>-->
-    <div class="title"><a :href="'/edu/web/video/detail/' + this.companyId + '/' + this.id" >切换到视频版</a></div>
+    <div class="title">
+      <!--<a :href="'/edu/web/video/detail/' + this.companyId + '/' + this.id" >切换到视频版</a>-->
+    </div>
     <div style="display: flex;justify-content: center;">
       <img :src="code.imgUrl" style="width: 100% ;height: 80%" />
     </div>
@@ -29,9 +31,22 @@ export default {
   },
   watch: {
     audioUrl () {
+      console.log(this.audioUrl)
+      let audioLet = new Audio()
+      audioLet.src = this.audioUrl
+      audioLet.load()
     }
   },
+  computed: {
+  },
   methods: {
+    beforeLoad (type, src) {
+      if (type === 'audio') {
+        let audio = new Audio()
+        audio.src = src
+        audio.load()
+      }
+    },
     iosInit () {
       function forceSafariPlayAudio () {
         console.log('forceSafariPlayAudio')
@@ -55,7 +70,7 @@ export default {
           if (this.code.audioUrl) {
             this.audioUrl = this.code.audioUrl
           } else {
-            this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch',this.$$state.getters.getToken())
+            this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch', this.$store.getters.getToken)
           }
         }
       }, (error) => {
@@ -72,6 +87,7 @@ export default {
     this.getCode()
   },
   mounted () {
+    this.beforeLoad('audio', this.audioUrl)
     console.log(navigator.userAgent.toLowerCase())
     if (/(iphone|ipad|ipod|ios)/i.test(navigator.userAgent.toLowerCase())) {
       this.loop = false

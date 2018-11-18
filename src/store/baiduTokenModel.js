@@ -1,7 +1,7 @@
 import axios from 'axios'
 import host from '../base/addr'
 const state = {
-  token: ""
+  token: ''
 }
 const getters = {
   getToken (state) {
@@ -10,7 +10,7 @@ const getters = {
 }
 const actions = {
   fetchToken ({commit}) {
-    axios.post(host.host + '/baidu/getToken',).then((res) => {
+    axios.post(host.host + '/baidu/getToken').then((res) => {
       console.log(res)
       commit('updateToken', JSON.parse(res.data.result).access_token)
       // host.tok = state.token

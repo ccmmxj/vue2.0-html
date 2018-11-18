@@ -4,10 +4,10 @@ const audio = 'https://ai.baidu.com/aidemo?type=tns2&idx=1&cuid=baidu_speech_dem
 const ios_audio = 'http://tsn.baidu.com/text2audio?tok={tok}&cuid=baidu_speech_demo&ctp=1&spd=1&pit=3&vol=5&per=0&tex='
 
 export default { host,
-  audioUrl (text, type,tok) {
+  audioUrl (text, type, tok) {
     text = encodeURI(encodeURI(text))
     if (/(iphone|ipad|ipod|ios)/i.test(navigator.userAgent.toLowerCase())) {
-      return ios_audio.replace(/{tok}/g,tok) + text + '&lan=zh'
+      return ios_audio.replace(/{tok}/g, tok) + text + '&lan=zh'
     }
     return audio + text + '&lan=' + type
   }
