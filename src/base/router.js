@@ -108,11 +108,11 @@ const router = new Router({
       name: 'web_card_detail',
       component: WebCardDetail
     },
-    {
-      path: '/edu/web/video/detail/:companyId/:id',
-      name: 'web_video_detail',
-      component: WebVideoDetail
-    },
+    // {
+    //   path: '/edu/web/video/detail/:companyId/:id',
+    //   name: 'web_video_detail',
+    //   component: WebVideoDetail
+    // },
     {
       path: '/edu/logout',
       name: 'manage_login',

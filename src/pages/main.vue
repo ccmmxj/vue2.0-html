@@ -28,8 +28,10 @@ export default {
       rights: []
     }
   },
-  mounted () {
+  created () {
     this.$store.dispatch('fetchToken', {})
+  },
+  mounted () {
     this.$http.ajax('post', 'advert/list', {type: 0}, (data) => {
       console.log(data)
       if (data.success) {

@@ -3,7 +3,9 @@
     <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">-->
       <!--<legend>详情</legend>-->
     <!--</fieldset>-->
-    <div class="title"><a :href="'/edu/web/video/detail/' + this.companyId + '/' + this.id" >切换到视频版</a></div>
+    <div class="title">
+      <!--<a :href="'/edu/web/video/detail/' + this.companyId + '/' + this.id" >切换到视频版</a>-->
+    </div>
     <div style="display: flex;justify-content: center;">
       <img :src="code.imgUrl" style="width: 100% ;height: 80%" />
     </div>
@@ -29,13 +31,25 @@ export default {
   },
   watch: {
     audioUrl () {
+      this.beforeLoad('audio', this.audioUrl)
     }
   },
+  computed: {
+  },
   methods: {
+    beforeLoad (type, src) {
+      if (type === 'audio') {
+        let audio = document.createElement('audio')
+        audio.src = src
+        audio.type='audio/mpeg'
+        audio.load()
+      }
+    },
     iosInit () {
       function forceSafariPlayAudio () {
         console.log('forceSafariPlayAudio')
         var audioEl = document.getElementById('audio')
+        audioEl.type='audio/mpeg'
         audioEl.load() // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
         audioEl.play() // iOS 7/8 仅需要 play 一下
       }
@@ -55,7 +69,16 @@ export default {
           if (this.code.audioUrl) {
             this.audioUrl = this.code.audioUrl
           } else {
-            this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch',this.$store.getters.getToken)
+            try{
+              this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch', this.$store.getters.getToken);
+            }catch (e) {
+              this.$http.ajax('post',host.host + '/baidu/getToken', {}, (data) => {
+                console.log(res)
+                this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch', JSON.parse(res.data.result).access_token)
+              }, (error) => {
+                console.log(error)
+              })
+            }
           }
         }
       }, (error) => {
@@ -66,6 +89,9 @@ export default {
 
     }
   },
+  updated () {
+
+  },
   created () {
     this.id = this.$route.params.id
     this.companyId = this.$route.params.companyId
@@ -73,8 +99,9 @@ export default {
   },
   mounted () {
     console.log(navigator.userAgent.toLowerCase())
-    if (/(iphone|ipad|ipod|ios)/i.test(navigator.userAgent.toLowerCase())) {
-      this.loop = false
+    if (document.getElementById('audio').paused || document.getElementById('audio').ended) {
+    // if (/(iphone|ipad|ipod|ios)/i.test(navigator.userAgent.toLowerCase())) {
+      // this.loop = false
       this.message = '请点击一下屏幕进行播放'
       this.iosInit()
       console.log('forceSafariPlayAudio')
