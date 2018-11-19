@@ -31,10 +31,7 @@ export default {
   },
   watch: {
     audioUrl () {
-      console.log(this.audioUrl)
-      let audioLet = new Audio()
-      audioLet.src = this.audioUrl
-      audioLet.load()
+      this.beforeLoad('audio', this.audioUrl)
     }
   },
   computed: {
@@ -42,8 +39,9 @@ export default {
   methods: {
     beforeLoad (type, src) {
       if (type === 'audio') {
-        let audio = new Audio()
+        let audio = document.createElement('audio')
         audio.src = src
+        audio.type='audio/mpeg'
         audio.load()
       }
     },
@@ -51,6 +49,7 @@ export default {
       function forceSafariPlayAudio () {
         console.log('forceSafariPlayAudio')
         var audioEl = document.getElementById('audio')
+        audioEl.type='audio/mpeg'
         audioEl.load() // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
         audioEl.play() // iOS 7/8 仅需要 play 一下
       }
@@ -81,28 +80,31 @@ export default {
 
     }
   },
+  updated () {
+
+  },
   created () {
     this.id = this.$route.params.id
     this.companyId = this.$route.params.companyId
     this.getCode()
   },
   mounted () {
-    this.beforeLoad('audio', this.audioUrl)
     console.log(navigator.userAgent.toLowerCase())
-    if (/(iphone|ipad|ipod|ios)/i.test(navigator.userAgent.toLowerCase())) {
-      this.loop = false
+    if (document.getElementById('audio').paused || document.getElementById('audio').ended) {
+    // if (/(iphone|ipad|ipod|ios)/i.test(navigator.userAgent.toLowerCase())) {
+      // this.loop = false
       this.message = '请点击一下屏幕进行播放'
       this.iosInit()
       console.log('forceSafariPlayAudio')
-      var time = setInterval(() => {
-        console.log('time')
-        var audioEl = document.getElementById('audio')
-        if (audioEl.paused || audioEl.ended) {
-          audioEl.load() // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
-          audioEl.play() // iOS 7/8 仅需要 play 一下
-        }
-        clearInterval(time)
-      }, 1000)
+      // var time = setInterval(() => {
+      //   console.log('time')
+      //   var audioEl = document.getElementById('audio')
+      //   if (audioEl.paused || audioEl.ended) {
+      //     audioEl.load() // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+      //     audioEl.play() // iOS 7/8 仅需要 play 一下
+      //   }
+      //   clearInterval(time)
+      // }, 1000)
     }
   }
 }
