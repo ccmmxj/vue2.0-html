@@ -69,7 +69,16 @@ export default {
           if (this.code.audioUrl) {
             this.audioUrl = this.code.audioUrl
           } else {
-            this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch', this.$store.getters.getToken)
+            try{
+              this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch', this.$store.getters.getToken);
+            }catch (e) {
+              this.$http.ajax('post',host.host + '/baidu/getToken', {}, (data) => {
+                console.log(res)
+                this.audioUrl = addr.audioUrl(this.code.content, this.code.type === 1 ? 'en' : 'ch', JSON.parse(res.data.result).access_token)
+              }, (error) => {
+                console.log(error)
+              })
+            }
           }
         }
       }, (error) => {
