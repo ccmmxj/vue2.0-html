@@ -1,7 +1,7 @@
 import axios from 'axios'
 import host from '../base/addr'
 const state = {
-  token: ""
+  token: null
 }
 const getters = {
   getToken (state) {

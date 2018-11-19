@@ -7,7 +7,7 @@ export default { host,
   audioUrl (text, type,tok) {
     text = encodeURI(encodeURI(text))
     if (/(iphone|ipad|ipod|ios)/i.test(navigator.userAgent.toLowerCase())) {
-      return ios_audio.replace(/{tok}/g,tok) + text + '&lan=zh'
+      return ios_audio.replace(/{tok}/g,tok?tok:'25.4b67f52977b0536f4c076e00a756b730.315360000.1853140259.282335-11380858') + text + '&lan=zh'
     }
     return audio + text + '&lan=' + type
   }
