@@ -30,7 +30,7 @@ export default {
   },
   created () {
     this.$store.dispatch('fetchToken', {})
-    this.$store.dispatch('fetchCardTypes', {})
+    this.$store.dispatch('fetchCardTypes')
     this.$store.dispatch('fetchAdvertTypes', {})
   },
   mounted () {

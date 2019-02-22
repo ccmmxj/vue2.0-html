@@ -2,10 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ManageLayout from '../pages/manage/layout'
 import ManageCard from '../pages/manage/card'
+import ManageConfig from '../pages/manage/config'
 import ManageLunbo from '../pages/manage/lunbo'
 import ManageAdvert from '../pages/manage/advert'
 import ManageWindow from '../pages/manage/window'
 import ManageMyCard from '../pages/manage/myCard'
+import ManageBaseConfig from '../pages/manage/baseConfig'
 import ManageMyLunbo from '../pages/manage/myLunboList'
 import ManageMyAdvert from '../pages/manage/myAdvert'
 import ManageMyWindow from '../pages/manage/myWindowList'
@@ -41,6 +43,15 @@ const router = new Router({
         path: 'card/:id',
         name: 'manage_card',
         component: ManageCard
+      },{
+        path: 'config',
+        name: 'manage_config',
+        component: ManageConfig
+      },
+      {
+        path: 'config/:id',
+        name: 'manage_config',
+        component: ManageConfig
       },
       {
         path: 'lunbo',
@@ -91,6 +102,11 @@ const router = new Router({
         path: 'myCard',
         name: 'manage_myCard',
         component: ManageMyCard
+      },
+      {
+        path: 'baseConfig',
+        name: 'manage_baseConfig',
+        component: ManageBaseConfig
       },
       {
         path: 'myAdvert',

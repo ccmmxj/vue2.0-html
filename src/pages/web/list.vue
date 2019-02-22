@@ -24,7 +24,7 @@ export default {
   name: 'list',
   data () {
     return {
-      types: this.$store.getters.getCardTypes,
+      types: undefined,
       lists: []
     }
   },
@@ -53,6 +53,13 @@ export default {
     this.getList(this.types[0].value)
   },
   mounted () {
+    let fetchData = {
+      fun :function (types) {
+        this.types = types
+      }.bind(this),
+      companyId : this.$route.params.companyId
+    }
+    this.$store.dispatch('fetchCardTypes', fetchData)
   }
 }
 </script>

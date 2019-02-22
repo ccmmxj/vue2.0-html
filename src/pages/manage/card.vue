@@ -188,6 +188,7 @@ export default {
   },
   mounted () {
     index.upload(this.$store.getters.getUser.sessionId)
+    this.$store.dispatch('fetchCardTypes',{companyId:this.$store.getters.getUser.eduUser.companyId})
   },
   updated () {
   },
