@@ -6,7 +6,7 @@
       </fieldset>
       <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
         <ul class="layui-tab-title">
-          <li v-for="(item,index) in types" :key="item.code" :class="{'layui-this':index == 0}" @click="getList(item.code)">{{item.title}}</li>
+          <li v-for="(item,index) in types" :key="item.value" :class="{'layui-this':index == 0}" @click="getList(item.value)">{{item.title}}</li>
         </ul>
       </div>
     </div>
@@ -24,26 +24,7 @@ export default {
   name: 'list',
   data () {
     return {
-      types: [{
-        code: '0',
-        title: '有图汉字'
-      },
-      {
-        code: '3',
-        title: '拼音'
-      },
-      {
-        code: '1',
-        title: '字母'
-      },
-      {
-        code: '2',
-        title: '数字'
-      },
-      {
-        code: '4',
-        title: '象形字（一）'
-      }],
+      types: this.$store.getters.getCardTypes,
       lists: []
     }
   },
@@ -69,7 +50,7 @@ export default {
     if (this.companyId) {
       this.companyId = 1
     }
-    this.getList(this.types[0].code)
+    this.getList(this.types[0].value)
   },
   mounted () {
   }
@@ -93,7 +74,7 @@ export default {
     float: left; background: #fff;
     width: 100%;
   }
-  .code-body {
+  .value-body {
     float: left;
   }
 </style>

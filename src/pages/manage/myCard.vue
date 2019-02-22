@@ -74,9 +74,6 @@ export default {
         title: this.searchTitle
       }, '#cardList')
     },
-    chooseType (item) {
-      this.type = item.code
-    },
     toolFun (layer, obj, tableLay) {
       return {
         'edit': (sessionid) => {
@@ -177,7 +174,7 @@ export default {
         width: 180,
         sort: true,
         templet: (item) => {
-          return item.type === 0 ? '有图汉字' : item.type === 1 ? '字母' : item.type === 2 ? '数字' : item.type === 4 ? '象形字（一）' : '拼音'
+          return index.chooseType(this.$store.getters.getCardTypes,item)
         }},
       {field: 'imgUrl',
         title: '卡片链接',

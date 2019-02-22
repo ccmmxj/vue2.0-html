@@ -1,11 +1,11 @@
 <template>
   <div class="layui-unselect layui-form-select" :class="{'layui-form-selected':selectShow}">
     <div class="layui-select-title">
-      <input type="text" placeholder="请选择" @click="changeSelect" readonly v-model="currentValue.value" class="layui-input layui-unselect">
+      <input type="text" placeholder="请选择" @click="changeSelect" readonly v-model="currentValue.title" class="layui-input layui-unselect">
       <i class="layui-edge"></i>
     </div>
     <dl class="layui-anim layui-anim-upbit" v-show="selectShow">
-      <dd v-for="item in options" :class="{'layui-this':currentValue.code==item.code}" @click="currentSelect(item)" :key="item.code" :value="item.code">{{item.value}}</dd>
+      <dd v-for="item in options" :class="{'layui-this':currentValue.value==item.value}" @click="currentSelect(item)" :key="item.value" :value="item.value">{{item.title}}</dd>
     </dl>
   </div>
 </template>
@@ -19,8 +19,8 @@ export default {
       type: [Object],
       default () {
         return {
-          code: null,
-          value: ''
+          value: null,
+          title: ''
         }
       }
     },
@@ -28,12 +28,12 @@ export default {
       type: [Array],
       default () {
         return [{
-          code: 0,
-          value: 'option1'
+          value: 0,
+          title: 'option1'
         },
         {
-          code: 1,
-          value: 'option2'
+          value: 1,
+          title: 'option2'
         }]
       }
     }

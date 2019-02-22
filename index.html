@@ -59,6 +59,16 @@
           return format;
         }
       },
+      chooseType(list,item){
+        let result = "";
+        list.forEach(cardType => {
+          if(item.type.toString() === cardType.value){
+            result = cardType.title
+            return
+          }
+        })
+        return result
+      },
       flow: () => {
         layui.use('flow', function () {
           var flow = layui.flow;
@@ -156,7 +166,7 @@
           ,where: where
         });
       },
-      table:(id,filter,page,url,tools,titles,sessionid,where)=>{
+      table:(id,filter,page,url,tools,titles,sessionid,where,typeFun)=>{
         layui.use('table', function(){
           var table = layui.table;
           //第一个实例

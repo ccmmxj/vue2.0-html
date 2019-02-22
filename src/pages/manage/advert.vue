@@ -34,7 +34,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label">卡片类型</label>
       <div class="layui-input-inline">
-        <LaySelect :options="advertTypes" :value="advertTypes[type]" @change-type="chooseType"></LaySelect>
+        <LaySelect :options="advertTypes" :value="advertTypes[type]" @change-type="chooseItem"></LaySelect>
         <!--<select v-model="type">-->
         <!--<option v-for="item in codeTypes" :value="item.code" :key="item.code" >{{item.value}}</option>-->
         <!--</select>-->
@@ -70,15 +70,7 @@ export default {
       alertType: 'info',
       showAlert: false,
       messageAlert: '',
-      advertTypes:
-        [{
-          code: '0',
-          value: '底部'
-        },
-        {
-          code: '1',
-          value: '右边'
-        }]
+      advertTypes:this.$store.getters.getAdvertTypes
 
     }
   },
@@ -100,7 +92,15 @@ export default {
       this.advertUrl = url
     },
     chooseType (item) {
-      this.type = item.code
+      this.type = item.value
+    },
+    chooseItem(item){
+      for(let i = 0 ;i<this.cardTypes.length;i++){
+        if(this.cardTypes[i].value == item.value){
+          this.type == i
+          return
+        }
+      }
     },
     submitAdvert () {
       let message = ''

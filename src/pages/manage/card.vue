@@ -49,7 +49,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label">卡片类型</label>
       <div class="layui-input-inline">
-        <LaySelect :options="codeTypes" :value="codeTypes[type]" @change-type="chooseType"></LaySelect>
+        <LaySelect :options="cardTypes" :value="chooseItem(type)" @change-type="chooseItem"></LaySelect>
         <!--<select v-model="type">-->
           <!--<option v-for="item in codeTypes" :value="item.code" :key="item.code" >{{item.value}}</option>-->
         <!--</select>-->
@@ -99,27 +99,7 @@ export default {
       alertType: 'info',
       showAlert: false,
       messageAlert: '',
-      codeTypes:
-        [{
-          code: '0',
-          value: '有图汉字'
-        },
-        {
-          code: '1',
-          value: '字母'
-        },
-        {
-          code: '2',
-          value: '数字'
-        },
-        {
-          code: '3',
-          value: '拼音'
-        },
-        {
-          code: '4',
-          value: '象形字（一）'
-        }]
+      cardTypes:this.$store.getters.getCardTypes
     }
   },
   watch: {
@@ -140,7 +120,15 @@ export default {
   },
   methods: {
     chooseType (item) {
-      this.type = item.code
+      this.type = item.value
+    },
+    chooseItem(item){
+      for(let i = 0 ;i<this.cardTypes.length;i++){
+        if(this.cardTypes[i].value == item.value){
+          this.type == i
+          return
+        }
+      }
     },
     changeImgUrl (url) {
       this.imgUrl = url
