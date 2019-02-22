@@ -29,9 +29,9 @@ export default {
     }
   },
   methods: {
-    getList (code) {
+    getList (value) {
       this.$http.ajax('post', 'card/list/' + this.companyId, {
-        type: code
+        type: value
       }, (data) => {
         console.log(data)
         if (data.success) {
@@ -74,7 +74,7 @@ export default {
     float: left; background: #fff;
     width: 100%;
   }
-  .value-body {
+  .code-body {
     float: left;
   }
 </style>
