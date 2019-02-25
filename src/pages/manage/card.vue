@@ -49,7 +49,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label">卡片类型</label>
       <div class="layui-input-inline">
-        <LaySelect :options="cardTypes" :value="chooseItem(type)" @change-type="chooseItem"></LaySelect>
+        <LaySelect :options="cardTypes" :value="chooseItem(typeItem)" @change-type="chooseItem"></LaySelect>
         <!--<select v-model="type">-->
           <!--<option v-for="item in codeTypes" :value="item.code" :key="item.code" >{{item.value}}</option>-->
         <!--</select>-->
@@ -90,7 +90,7 @@ export default {
   name: 'card',
   data () {
     return {
-      type: 0,
+      typeItem: {value:0},
       imgUrl: '',
       audioUrl: '',
       videoUrl: '',
@@ -112,21 +112,21 @@ export default {
     title () {
       console.log('title:' + this.title)
     },
-    type () {
-      console.log('type:' + this.type)
-      eventBus.$emit('setCurrentSelect', this.type)
+    typeItem () {
+      console.log('typeItem:' + this.typeItem)
+      eventBus.$emit('setCurrentSelect', this.typeItem)
       console.log('setCurrentSelect')
     }
   },
   methods: {
     chooseType (item) {
-      this.type = item.value
+      this.typeItem = item.value
     },
     chooseItem(item){
       for(let i = 0 ;i<this.cardTypes.length;i++){
         if(this.cardTypes[i].value == item.value){
-          this.type == i
-          return
+          this.typeItem = this.cardTypes[i]
+          return this.cardTypes[i]
         }
       }
     },
@@ -141,7 +141,7 @@ export default {
     },
     submitCode () {
       let message = ''
-      if (this.type == null || this.type === '') {
+      if (this.typeItem.value == null || this.typeItem.value === '') {
         message += '请选择类型,'
       }
       if (this.title == null || this.title === '') {
@@ -153,7 +153,7 @@ export default {
       // if (this.videoUrl == null || this.videoUrl === '') {
       //   message += '请上传视频,'
       // }
-      console.log(this.type)
+      console.log(this.typeItem)
       if ((this.audioUrl == null || this.audioUrl === '') && (this.content == null || this.content === '')) {
         message += '请上传音频或输入内容,'
       }
@@ -164,7 +164,7 @@ export default {
       this.$http.ajax('post', '/manage/card/saveOrUpdate;jsessionid=' + this.$store.getters.getUser.sessionId,
         {
           id: this.id,
-          type: this.type,
+          type: this.typeItem.value,
           imgUrl: this.imgUrl,
           content: this.content,
           title: this.title,
@@ -198,7 +198,7 @@ export default {
       this.$http.ajax('post', '/manage/card/detail;jsessionid=' + this.$store.getters.getUser.sessionId, {id: this.id}, (data) => {
         console.log(data)
         if (data.success) {
-          this.type = data.result.type
+          this.typeItem.value = data.result.type
           this.imgUrl = data.result.imgUrl
           this.audioUrl = data.result.audioUrl
           this.title = data.result.title
