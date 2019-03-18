@@ -90,7 +90,7 @@ export default {
   name: 'card',
   data () {
     return {
-      typeItem: {value:0},
+      typeItem: {},
       imgUrl: '',
       audioUrl: '',
       videoUrl: '',
@@ -113,6 +113,7 @@ export default {
       console.log('title:' + this.title)
     },
     typeItem () {
+      debugger
       console.log('typeItem:' + this.typeItem)
       eventBus.$emit('setCurrentSelect', this.typeItem)
       console.log('setCurrentSelect')

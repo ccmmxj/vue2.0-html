@@ -58,22 +58,17 @@ export default {
     changeSelect (event) {
       event.stopPropagation()
       this.selectShow = !this.selectShow
-    },
-    chooseItem(item){
-      for(let i = 0 ;i<this.cardTypes.length;i++){
-        if(this.cardTypes[i].value == item.value){
-          return this.cardTypes[i]
-        }
-      }
-    },
+    }
   },
   mounted () {
     eventBus.$on('resetSelectShow', () => {
       this.selectShow = false
     })
     eventBus.$on('setCurrentSelect', (item) => {
+      debugger
       this.selectShow = !this.selectShow
-      this.setCurrentValue(chooseItem(item))
+      this.setCurrentValue(item)
+      debugger
       this.selectShow = !this.selectShow
     })
   }

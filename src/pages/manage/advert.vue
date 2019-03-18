@@ -34,7 +34,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label">卡片类型</label>
       <div class="layui-input-inline">
-        <LaySelect :options="advertTypes" :value="advertTypes[type]" @change-type="chooseItem"></LaySelect>
+        <LaySelect :options="advertTypes" :value="chooseItem(typeItem)" @change-type="chooseItem"></LaySelect>
         <!--<select v-model="type">-->
         <!--<option v-for="item in codeTypes" :value="item.code" :key="item.code" >{{item.value}}</option>-->
         <!--</select>-->
@@ -63,7 +63,7 @@ export default {
   name: 'advert',
   data () {
     return {
-      type: 0,
+      typeItem: {},
       advertUrl: '',
       toUrl: '',
       name: '',
@@ -81,9 +81,10 @@ export default {
     name () {
       console.log('name:' + this.name)
     },
-    type () {
-      console.log('type:' + this.type)
-      eventBus.$emit('setCurrentSelect', this.type)
+    typeItem () {
+      debugger
+      console.log('typeItem:' + this.typeItem)
+      eventBus.$emit('setCurrentSelect', this.typeItem)
       console.log('setCurrentSelect')
     }
   },
@@ -95,10 +96,10 @@ export default {
       this.type = item.value
     },
     chooseItem(item){
-      for(let i = 0 ;i<this.cardTypes.length;i++){
-        if(this.cardTypes[i].value == item.value){
-          this.type == i
-          return
+      for(let i = 0 ;i<this.advertTypes.length;i++){
+        if(this.advertTypes[i].value == item.value){
+          this.typeItem = this.advertTypes[i]
+          return this.advertTypes[i]
         }
       }
     },
@@ -145,6 +146,7 @@ export default {
   },
   mounted () {
     index.upload(this.$store.getters.getUser.sessionId)
+    this.$store.dispatch('fetchAdvertTypes',{})
   },
   updated () {
   },
@@ -155,7 +157,7 @@ export default {
         console.log(data)
         if (data.success) {
           this.advertUrl = data.result.advertUrl
-          this.type = data.result.type
+          this.typeItem.value = data.result.type
           this.toUrl = data.result.toUrl
           this.name = data.result.name
         }

@@ -17,11 +17,11 @@
       <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-          <input type="password" name="password" placeholder="请输入密码" v-model.lazy="password" class="layui-input">
+          <input type="password" name="password" placeholder="请输入密码" v-model.lazy="password" @keyup.enter="clickb" class="layui-input">
         </div>
       </div>
       <div class="layui-form-item">
-        <button @click="clickb" class="layui-btn" style="width:140px;margin-left:140px;">登陆</button>
+        <button @click="clickb" class="layui-btn" style="width:140px;margin-left:140px;" @keyup.enter.native="clickb">登陆</button>
       </div>
     </div>
   </div>
