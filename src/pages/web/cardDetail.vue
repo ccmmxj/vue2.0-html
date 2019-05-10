@@ -10,7 +10,8 @@
       <img :src="code.imgUrl" style="width: 100% ;height: 80%" />
     </div>
     <div style="display: flex;justify-content: center;">
-      <audio ref='audio' :src="audioUrl" id='audio' :preload="loop" :autoplay="loop" :loop="loop" >该浏览器不支持audio属性</audio>
+      <button class="layui-btn btn" id="play" @click="play">播放</button>
+      <audio ref='audio' :src="audioUrl" id='audio' :preload="preload" :autoplay="autoplay" :loop="loop">该浏览器不支持audio属性</audio>
       <span style="color:red;font-size:14px;" id="message">{{message}}</span>
     </div>
   </div>
@@ -26,7 +27,9 @@ export default {
       code: {},
       audioUrl: '',
       message: '',
-      loop: true
+      loop: false,
+      preload:true,
+      autoplay:true
     }
   },
   watch: {
@@ -37,6 +40,14 @@ export default {
   computed: {
   },
   methods: {
+    play(){
+      let audio = document.getElementById('audio')
+      if(audio.paused)                     {
+        audio.play();//audio.play();// 这个就是播放
+      }else{
+        audio.pause();// 这个就是暂停
+      }
+    },
     beforeLoad (type, src) {
       if (type === 'audio') {
         let audio = document.createElement('audio')
@@ -53,13 +64,13 @@ export default {
         audioEl.load() // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
         audioEl.play() // iOS 7/8 仅需要 play 一下
       }
-      document.getElementById('audio').addEventListener('pause', forceSafariPlayAudio, false)
-      document.getElementById('audio').addEventListener('ended', forceSafariPlayAudio, false)
+      // document.getElementById('audio').addEventListener('pause', forceSafariPlayAudio, false)
+      // document.getElementById('audio').addEventListener('ended', forceSafariPlayAudio, false)
       document.getElementById('audio').addEventListener('play', function () {
-        window.removeEventListener('touchstart', forceSafariPlayAudio, false)
+        document.getElementById('play').removeEventListener('touchstart', forceSafariPlayAudio, false)
         document.getElementById('message').innerHTML = ''
       }, false)
-      window.addEventListener('touchstart', forceSafariPlayAudio, false)
+      document.getElementById('play').addEventListener('touchstart', forceSafariPlayAudio, false)
     },
     getCode () {
       this.$http.ajax('post', '/card/detail/' + this.companyId + '/' + this.id, {}, (data) => {
