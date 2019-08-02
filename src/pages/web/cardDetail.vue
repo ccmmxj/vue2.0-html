@@ -10,9 +10,9 @@
       <img :src="code.imgUrl" style="width: 100% ;height: 80%" />
     </div>
     <div style="display: flex;justify-content: center;">
-      <button class="layui-btn btn" id="play" @click="play">播放</button>
-      <audio ref='audio' :src="audioUrl" id='audio' :preload="preload" :autoplay="autoplay" :loop="loop">该浏览器不支持audio属性</audio>
-      <span style="color:red;font-size:14px;" id="message">{{message}}</span>
+      <!--<button class="layui-btn btn" id="play" @click="play">播放</button>-->
+      <audio ref='audio' :src="audioUrl" id='audio' :controls="controls" :preload="preload" :autoplay="autoplay" :loop="loop"  controlsList="nodownload">该浏览器不支持audio属性</audio>
+      <!--<span style="color:red;font-size:14px;" id="message">{{message}}</span>-->
     </div>
   </div>
 </template>
@@ -29,7 +29,8 @@ export default {
       message: '',
       loop: false,
       preload:true,
-      autoplay:true
+      autoplay:true,
+      controls:true
     }
   },
   watch: {
@@ -140,5 +141,9 @@ export default {
     font-size: 14px;
     top: 20px;
     z-index:1000
+  }
+  #audio{
+    width: 100%;
+    background-color: #fff;
   }
 </style>
