@@ -4,7 +4,7 @@
       <router-view></router-view>
     </div>
     <Footer class="footer"></Footer>
-    <div class="advert bottom">
+    <div class="advert bottom" style="z-index:-1">
       <Advert v-if="bottom != null" type="bottom" :toUrl="bottom.toUrl" :advertUrl="bottom.advertUrl"></Advert>
     </div>
     <div class="advert">
