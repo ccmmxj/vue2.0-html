@@ -2,7 +2,7 @@
   <div>
     <div class="hearder">
       <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-        <legend>三月认知-九月猪猪</legend>
+        <legend>识字</legend>
       </fieldset>
       <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
         <ul class="layui-tab-title">
