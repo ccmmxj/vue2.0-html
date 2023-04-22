@@ -10,6 +10,7 @@ import ManageMyCard from '../pages/manage/myCard'
 import ManageBaseConfig from '../pages/manage/baseConfig'
 import ManageMyLunbo from '../pages/manage/myLunboList'
 import ManageMyAdvert from '../pages/manage/myAdvert'
+import ManageOther from '../pages/manage/other'
 import ManageMyWindow from '../pages/manage/myWindowList'
 import ManageQRcode from '../pages/manage/qrcode'
 import ManageLogin from '../pages/manage/login'
@@ -112,6 +113,11 @@ const router = new Router({
         path: 'myAdvert',
         name: 'manage_myAdvert',
         component: ManageMyAdvert
+      },
+      {
+        path: 'other',
+        name: 'manage_other',
+        component: ManageOther
       }]
     },
     {
@@ -124,11 +130,11 @@ const router = new Router({
       name: 'web_card_detail',
       component: WebCardDetail
     },
-    // {
-    //   path: '/edu/web/video/detail/:companyId/:id',
-    //   name: 'web_video_detail',
-    //   component: WebVideoDetail
-    // },
+    {
+      path: '/edu/web/video/detail/:companyId/:id',
+      name: 'web_video_detail',
+      component: WebVideoDetail
+    },
     {
       path: '/edu/logout',
       name: 'manage_login',
