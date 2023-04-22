@@ -1,7 +1,7 @@
 <template>
   <div>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-      <legend>按钮主题</legend>
+      <legend>清除模块</legend>
     </fieldset>
 
     <div class="layui-btn-container">
