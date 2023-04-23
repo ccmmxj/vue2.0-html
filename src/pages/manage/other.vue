@@ -38,7 +38,7 @@ export default {
       layer.confirm('确认清除无用卡片资源吗？', function (index) {
         $.ajax({
           method: 'get',
-          url: addr.host + 'manage/card/clearResource;jsessionid=' + layer.sessionId,
+          url: addr.host + 'manage/other/clearResource;jsessionid=' + layer.sessionId,
           dataType: 'json',
           success: (data) => {
             if (data.success) {

@@ -11,6 +11,7 @@ import ManageBaseConfig from '../pages/manage/baseConfig'
 import ManageMyLunbo from '../pages/manage/myLunboList'
 import ManageMyAdvert from '../pages/manage/myAdvert'
 import ManageOther from '../pages/manage/other'
+import ManageDelResource from '../pages/manage/delResource'
 import ManageMyWindow from '../pages/manage/myWindowList'
 import ManageQRcode from '../pages/manage/qrcode'
 import ManageLogin from '../pages/manage/login'
@@ -118,6 +119,11 @@ const router = new Router({
         path: 'other',
         name: 'manage_other',
         component: ManageOther
+      },
+      {
+        path: 'delResource',
+        name: 'manage_del_resource',
+        component: ManageDelResource
       }]
     },
     {
